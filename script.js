@@ -1656,6 +1656,108 @@ useEffect(() => {
         `
     },
     {
+        id: 22,
+        title: "অধ্যায় ২২: এক পেজেই সব দুনিয়া (React Router)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                সাধারণ ওয়েবসাইটে এক পেজ থেকে আরেক পেজে গেলে পুরো ওয়েবসাইট নতুন করে লোড হয়, সাদা স্ক্রিন দেখা যায়। কিন্তু ফেসবুকে নোটিফিকেশন বা মেসেজে ক্লিক করলে কি পেজ রিফ্রেশ হয়? না! শুধু মাঝখানের অংশটুকু বদলে যায়। একে বলা হয় <strong>SPA (Single Page Application)</strong>। আর React এ এটি করার জন্য <code>react-router-dom</code> প্যাকেজটি ব্যবহার করা হয়।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">Link vs Anchor Tag</h3>
+                <p>React এ আমরা পেজ বদলানোর জন্য <code>&lt;a href="..."&gt;</code> ব্যবহার করি না, কারণ এটি পেজ রিফ্রেশ করে দেয়। এর বদলে আমরা ব্যবহার করি <strong>Link</strong> কম্পোনেন্ট।</p>
+                
+                <div class="code-block">
+import { Link } from 'react-router-dom';
+
+// ভুল পদ্ধতি (পেজ রিফ্রেশ হবে)
+<a href="/about">About Us</a>
+
+// সঠিক পদ্ধতি (ম্যাজিকের মতো কাজ করবে)
+<Link to="/about">About Us</Link>
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">রাউটিং সেটআপ (Code Structure)</h3>
+                <p>পুরো অ্যাপকে রাউটারের ভেতরে মুড়িয়ে দিতে হয়।</p>
+                <div class="code-block">
+<BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/contact" element={<Contact />} />
+  </Routes>
+</BrowserRouter>
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ ডেমো: SPA সিমুলেশন</h3>
+                <p>নিচের মেনুগুলোতে ক্লিক করুন। লক্ষ্য করুন, পেজ রিফ্রেশ হচ্ছে না, কিন্তু কন্টেন্ট এবং URL (কাল্পনিক) বদলে যাচ্ছে।</p>
+
+                <div class="output-box" style="padding: 0; overflow: hidden; border: 1px solid #333;">
+                    <div style="background: #111; padding: 10px; border-bottom: 1px solid #333; display: flex; align-items: center; gap: 10px;">
+                        <div style="display: flex; gap: 5px;">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background: #ff5f56;"></div>
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e;"></div>
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f;"></div>
+                        </div>
+                        <div style="background: #000; color: #aaa; padding: 2px 10px; border-radius: 3px; font-size: 10px; width: 100%; text-align: center;">
+                            localhost:3000<span id="routerUrl" style="color: white;">/home</span>
+                        </div>
+                    </div>
+
+                    <nav style="background: #1e293b; padding: 10px; display: flex; justify-content: center; gap: 20px;">
+                        <button onclick="routerNav('home')" class="router-link active-link">Home</button>
+                        <button onclick="routerNav('about')" class="router-link">About</button>
+                        <button onclick="routerNav('contact')" class="router-link">Contact</button>
+                    </nav>
+
+                    <div id="routerView" style="padding: 30px; text-align: center; height: 150px; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.3s;">
+                        <h2 style="color: #00e5ff;">🏠 হোম পেজ</h2>
+                        <p>স্বাগতম! এটি আমাদের মূল পাতা।</p>
+                    </div>
+                </div>
+
+                <style>
+                    .router-link { background: none; border: none; color: #aaa; cursor: pointer; font-weight: bold; font-size: 14px; }
+                    .router-link:hover { color: white; }
+                    .active-link { color: #00e5ff; border-bottom: 2px solid #00e5ff; }
+                </style>
+
+                <script>
+                    function routerNav(page) {
+                        const view = document.getElementById('routerView');
+                        const url = document.getElementById('routerUrl');
+                        const links = document.querySelectorAll('.router-link');
+                        
+                        // লিংক হাইলাইট লজিক
+                        links.forEach(l => l.classList.remove('active-link'));
+                        event.target.classList.add('active-link');
+
+                        // পেজ চেঞ্জ লজিক (Simulated)
+                        view.style.opacity = 0;
+                        setTimeout(() => {
+                            if(page === 'home') {
+                                view.innerHTML = '<h2 style="color: #00e5ff;">🏠 হোম পেজ</h2><p>স্বাগতম! এটি আমাদের মূল পাতা।</p>';
+                                url.innerText = '/home';
+                            } else if(page === 'about') {
+                                view.innerHTML = '<h2 style="color: #ffbd2e;">ℹ️ আমাদের সম্পর্কে</h2><p>আমরা ওয়েব ডেভেলপমেন্ট শেখাই।</p>';
+                                url.innerText = '/about';
+                            } else if(page === 'contact') {
+                                view.innerHTML = '<h2 style="color: #27c93f;">📞 যোগাযোগ</h2><p>ইমেইল করুন: demo@example.com</p>';
+                                url.innerText = '/contact';
+                            }
+                            view.style.opacity = 1;
+                        }, 200);
+                    }
+                </script>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #22 (অনুশীলন):</strong><br>
+                    "Create a React Router setup with 3 pages: Dashboard, Profile, and Settings. Create a navigation bar where clicking 'Profile' changes the URL to '/profile' and shows the Profile component without reloading the page."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -1670,7 +1772,7 @@ useEffect(() => {
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =22 ; i <= 50; i++) {
+for (let i =23 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
