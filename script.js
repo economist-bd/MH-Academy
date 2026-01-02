@@ -253,6 +253,84 @@ alert(name + " এর বয়স " + age); // পপআপ দেখাবে
         `
     },
     {
+        id: 5,
+        title: "অধ্যায় ৫: লেআউটের জাদুকর (Flexbox)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                আগের দিনে ওয়েবসাইট ডিজাইন করতে গিয়ে কোনো কিছুকে মাঝখানে আনা বা পাশাপাশি সাজানো ছিল দুঃস্বপ্নের মতো। কিন্তু <strong>Flexbox</strong> আসার পর এটি এখন পানির মতো সহজ। আপনি যদি একটি ন্যাভিগেশন বার বা ই-কমার্স সাইটের প্রোডাক্ট গ্যালারি বানাতে চান, তবে Flexbox আপনার সেরা বন্ধু।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">Flexbox এর মূলমন্ত্র</h3>
+                <p>Flexbox ব্যবহার করতে হলে প্রথমে বাবার (Parent) উপর <code>display: flex;</code> দিতে হয়। তাহলেই তার ভেতরের সন্তানরা (Children) পাশাপাশি চলে আসে।</p>
+                
+                <ul style="margin-left: 20px; list-style-type: disc; margin-top: 10px;">
+                    <li><strong>Justify Content:</strong> এটি আইটেমগুলোকে বামে-ডানে (X-অক্ষ) নিয়ন্ত্রণ করে। (যেমন: center, space-between)।</li>
+                    <li><strong>Align Items:</strong> এটি আইটেমগুলোকে উপরে-নিচে (Y-অক্ষ) নিয়ন্ত্রণ করে।</li>
+                </ul>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">বিশ্বের সবচেয়ে কঠিন কাজ এখন সহজ!</h3>
+                <p>একসময় কোনো ডিভকে (Div) স্ক্রিনের একদম মাঝখানে আনা খুব কঠিন ছিল। Flexbox দিয়ে এটি মাত্র ৩ লাইনে করা যায়:</p>
+
+                <div class="code-block">
+.container {
+    display: flex;             /* ফ্লেক্সবক্স চালু */
+    justify-content: center;   /* বামে-ডানে মাঝখানে */
+    align-items: center;       /* উপরে-নিচে মাঝখানে */
+    height: 200px;             /* উচ্চতা */
+    background-color: #333;
+}
+                </div>
+
+                <h4>লাইভ ডেমো (Flexbox Playground):</h4>
+                <div class="output-box">
+                    <style>
+                        .flex-demo-container {
+                            display: flex;
+                            justify-content: flex-start; /* ডিফল্ট */
+                            background: #1e293b;
+                            padding: 10px;
+                            border-radius: 8px;
+                            height: 100px;
+                            align-items: center;
+                            gap: 10px;
+                        }
+                        .flex-item {
+                            width: 50px; height: 50px;
+                            background: linear-gradient(45deg, #00e5ff, #2979ff);
+                            color: white; font-weight: bold;
+                            display: flex; justify-content: center; align-items: center;
+                            border-radius: 5px;
+                        }
+                    </style>
+                    
+                    <div style="margin-bottom: 10px; display: flex; gap: 5px; flex-wrap: wrap;">
+                        <button onclick="document.getElementById('demoBox').style.justifyContent='flex-start'" style="cursor:pointer; padding: 5px;">Start</button>
+                        <button onclick="document.getElementById('demoBox').style.justifyContent='center'" style="cursor:pointer; padding: 5px;">Center</button>
+                        <button onclick="document.getElementById('demoBox').style.justifyContent='flex-end'" style="cursor:pointer; padding: 5px;">End</button>
+                        <button onclick="document.getElementById('demoBox').style.justifyContent='space-between'" style="cursor:pointer; padding: 5px;">Space Between</button>
+                    </div>
+
+                    <div id="demoBox" class="flex-demo-container">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+                    <p style="font-size: 12px; color: #666; margin-top: 5px;">(উপরের বাটনে ক্লিক করে পজিশন পরিবর্তন দেখুন)</p>
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">কেন এটি এত জরুরি?</h3>
+                <p>আপনার ওয়েবসাইটের মেনুবার (Navbar), ফুটার, এবং কার্ড লেআউট—সব কিছুই এই Flexbox দিয়েই তৈরি।</p>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #5 (অনুশীলন):</strong><br>
+                    "Create a navigation bar using HTML and CSS Flexbox. The logo should be on the far left, and the menu links (Home, About, Contact) should be on the far right. Use 'justify-content: space-between'."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -267,7 +345,7 @@ alert(name + " এর বয়স " + age); // পপআপ দেখাবে
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =5 ; i <= 50; i++) {
+for (let i =6 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
