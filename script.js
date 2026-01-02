@@ -1719,30 +1719,49 @@ import { Link } from 'react-router-dom';
     }
 ];
 
-// বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =23 ; i <= 50; i++) {
-    if (i === 25) continue; // ২৫ অলরেডি আছে
+
+
+// বাকি অধ্যায়গুলো (২৩-৫০) লুপ দিয়ে তৈরি করা
+for (let i = 23; i <= 50; i++) {
+    if (i === 25) continue; // ২৫ অলরেডি আছে (যদি ম্যানুয়ালি থাকে)
     chaptersDB.push({
         id: i,
         title: `অধ্যায় ${i}: ওয়েব ডেভেলপমেন্ট টপিক ${i}`,
-        content: `<p>এই অধ্যায়ে আমরা শিখবো কিভাবে অ্যাডভান্সড লেভেলের কাজ করা যায়। বিস্তারিত আসছে...</p>
-        <div class="prompt-box"><strong>🤖 AI Prompt #${i}:</strong><br> "Generate a code snippet to demonstrate topic ${i} in web development."</div>`
+        content: `
+            <div class="chapter-content">
+                <h3>এই অধ্যায়ে আমরা শিখবো অ্যাডভান্সড টপিক ${i}</h3>
+                <p>বিস্তারিত টিউটোরিয়াল শীঘ্রই আসছে...</p>
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #${i}:</strong><br> 
+                    "Generate a code snippet to demonstrate topic ${i} in web development."
+                </div>
+            </div>`
     });
 }
-// সর্টিং
+
+// ২৫ নম্বর অধ্যায় স্পেশাল হলে ম্যানুয়ালি অ্যাড করুন (যদি লুপে স্কিপ করে থাকেন)
+chaptersDB.push({
+    id: 25,
+    title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ (প্রজেক্ট)",
+    content: `<div class="chapter-content"><h3>সম্পূর্ণ প্রজেক্ট তৈরি</h3><p>আজ আমরা একটি ল্যান্ডিং পেজ বানাবো।</p></div>`
+});
+
+// ডাটা সর্টিং (যাতে ১, ২, ৩... সিরিয়ালে থাকে)
 chaptersDB.sort((a, b) => a.id - b.id);
 
-// --- আগের chaptersDB এবং লুপ কোড ঠিক থাকবে --- //
-// ... (আপনার আগের ৫০ চ্যাপ্টারের কোড এখানে থাকবে) ...
 
-// কোর্স ইন্টারফেস ওপেন করা
-// --- নতুন ফাংশন: বইয়ের কভার লোড করা ---
+// ==========================================
+// ২. ফাংশনালিটি সেকশন (বইয়ের কভার ও নেভিগেশন)
+// ==========================================
+
+// বইয়ের কভার লোড করার ফাংশন
 function loadBookCover() {
     const contentDiv = document.getElementById('chapter-content');
     
-    // কোনো চ্যাপ্টার সিলেক্টেড থাকবে না
+    // মেনু থেকে একটিভ ক্লাস সরিয়ে ফেলা
     document.querySelectorAll('#chapter-list li').forEach(l => l.classList.remove('active'));
 
+    // কভার ডিজাইন HTML
     contentDiv.innerHTML = `
         <div class="book-cover-container animate__animated animate__fadeIn">
             <h1 class="book-title">MH WEB ACADEMY</h1>
@@ -1765,54 +1784,56 @@ function loadBookCover() {
             </div>
         </div>
     `;
-    
-    // মোবাইল ভিউতে মেনু বাটন দেখানো, কিন্তু সাইডবার বন্ধ রাখা
+
+    // মোবাইলে হলে 'মেনু' বাটনটি দেখাবে
     if(window.innerWidth <= 768) {
-        document.querySelector('.mobile-course-btn').style.display = 'flex';
+        const mobileBtn = document.querySelector('.mobile-course-btn');
+        if(mobileBtn) mobileBtn.style.display = 'flex';
     }
 }
 
-// --- আপডেটেড startLearning ফাংশন ---
+// অ্যাপ শুরু করার মেইন ফাংশন
 function startLearning() {
     document.getElementById('course-container').style.display = 'flex';
     document.getElementById('hero-section').style.display = 'none';
     document.querySelector('.navbar').style.display = 'none';
     
-    renderChapterList(); // লিস্ট তৈরি হবে
+    // লিস্ট তৈরি করা
+    renderChapterList();
     
-    // পরিবর্তন: সরাসরি ১ নম্বর চ্যাপ্টার লোড না করে কভার লোড হবে
-    loadBookCover(); 
+    // শুরুতে সরাসরি বইয়ের কভার লোড হবে
+    loadBookCover();
 
-    // মোবাইল লজিক: শুরুতে সাইডবার খুলবে না, ইউজার কভার দেখবে
-    // ইউজার মেনু বাটনে ক্লিক করলে তবেই সাইডবার আসবে
+    // মোবাইলে সাইডবার শুরুতে বন্ধ থাকবে
     if(window.innerWidth <= 768) {
         document.getElementById('course-sidebar').classList.remove('active');
         document.querySelector('.sidebar-overlay').classList.remove('active');
     }
 }
 
-// --- আপডেটেড renderChapterList (মোবাইলে চ্যাপ্টার সিলেক্ট করলে সাইডবার হাইড হওয়া) ---
+// সাইডবার মেনু রেন্ডার করা (আপনার সমস্যার সমাধান এখানে)
 function renderChapterList() {
     const list = document.getElementById('chapter-list');
     list.innerHTML = '';
     
-    // "বইয়ের কভার" এ ফিরে যাওয়ার জন্য একটি হোম লিংক (অপশনাল)
+    // ১. কভার পেজে ফেরার লিংক
     const homeLi = document.createElement('li');
     homeLi.innerHTML = '<strong><i class="fas fa-book"></i> কভার পেজ</strong>';
     homeLi.onclick = () => {
         loadBookCover();
-        if(window.innerWidth <= 768) toggleSidebar(); // মোবাইলে মেনু বন্ধ হবে
+        if(window.innerWidth <= 768) toggleSidebar();
     };
     homeLi.style.borderBottom = "2px solid var(--primary)";
     list.appendChild(homeLi);
 
-    // চ্যাপ্টার লুপ
+    // ২. লুপ চালিয়ে বাকি চ্যাপ্টারগুলো লিস্টে আনা
     chaptersDB.forEach(chap => {
         const li = document.createElement('li');
         li.textContent = chap.title;
+        // ক্লিক ইভেন্ট
         li.onclick = () => {
             loadChapter(chap.id);
-            // মোবাইলে চ্যাপ্টার সিলেক্ট করলে সাইডবার হাইড হয়ে যাবে
+            // মোবাইলে চ্যাপ্টার সিলেক্ট করলে সাইডবার বন্ধ হবে
             if(window.innerWidth <= 768) {
                 toggleSidebar();
             }
@@ -1820,4 +1841,66 @@ function renderChapterList() {
         li.id = `chap-${chap.id}`;
         list.appendChild(li);
     });
+}
+
+// নির্দিষ্ট চ্যাপ্টার লোড করা
+function loadChapter(id) {
+    const chapter = chaptersDB.find(c => c.id === id);
+    const contentDiv = document.getElementById('chapter-content');
+    
+    // Active class set
+    document.querySelectorAll('#chapter-list li').forEach(l => l.classList.remove('active'));
+    const activeLi = document.getElementById(`chap-${id}`);
+    if(activeLi) activeLi.classList.add('active');
+
+    // কন্টেন্ট লোড
+    contentDiv.innerHTML = `
+        <h2 class="chapter-title">${chapter.title}</h2>
+        <div class="chapter-body animate__animated animate__fadeIn">${chapter.content}</div>
+        <br><br>
+        <div class="author-card">
+            <div class="author-img-wrapper">
+                 <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="author-img">
+            </div>
+            <div class="author-info">
+                <h3>মঞ্জুরুল হক</h3>
+                <p class="designation">প্রভাষক, অর্থনীতি</p>
+                <div class="contact-links">
+                    <a href="tel:01715247588">📞 01715247588</a>
+                    <a href="mailto:monjurul.jusc@gmail.com">📧 Email</a>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // স্ক্রল উপরে নিয়ে যাওয়া
+    document.querySelector('.content-area').scrollTop = 0;
+}
+
+// সাইডবার টগল (মোবাইলের জন্য)
+function toggleSidebar() {
+    const sidebar = document.getElementById('course-sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    if(sidebar && overlay) {
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+}
+
+// মোবাইল ন্যাভবার টগল
+function toggleMobileNav() {
+    const navList = document.getElementById('main-nav');
+    if(navList) navList.classList.toggle('active');
+}
+
+// ড্রপডাউন টগল (মোবাইল)
+function toggleDropdown(element) {
+    if (window.innerWidth <= 768) {
+        element.classList.toggle('active');
+    }
+}
+
+// PWA Service Worker (যদি থাকে)
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log(err));
 }
