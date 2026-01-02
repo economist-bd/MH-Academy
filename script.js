@@ -483,6 +483,74 @@ function toggleLight() {
         `
     },
     {
+        id: 8,
+        title: "অধ্যায় ৮: ঘটনা ও প্রতিক্রিয়া (JavaScript Events)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                একটি ওয়েবসাইট তখনই জীবন্ত মনে হয় যখন এটি আপনার কাজের উত্তর দেয়। যেমন: মাউস নিলে রং বদলানো, বাটনে ক্লিক করলে মেনু আসা, বা টাইপ করার সময় সাথে সাথে ভুল ধরা। জাভাস্ক্রিপ্টের ভাষায় এগুলোকে বলা হয় <strong>Events</strong>।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">জনপ্রিয় কিছু ইভেন্ট</h3>
+                <ul style="margin-left: 20px; list-style-type: disc; margin-top: 10px;">
+                    <li><code>click</code>: যখন ইউজার ক্লিক করে।</li>
+                    <li><code>mouseover</code>: যখন মাউস কোনো কিছুর উপর নেওয়া হয়।</li>
+                    <li><code>keyup</code>: যখন কিবোর্ডে টাইপ করে আঙুল উঠানো হয়।</li>
+                    <li><code>submit</code>: যখন ফর্ম জমা দেওয়া হয়।</li>
+                </ul>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">আধুনিক পদ্ধতি (addEventListener)</h3>
+                <p>HTML এর ভেতরে <code>onclick="..."</code> লেখা পুরনো পদ্ধতি। প্রফেশনালরা <code>addEventListener</code> ব্যবহার করেন। এতে কোড পরিষ্কার থাকে।</p>
+
+                <div class="code-block">
+let box = document.getElementById('inputBox');
+let counter = document.getElementById('charCount');
+
+// রিয়েল-টাইম ক্যারেক্টার কাউন্টার
+box.addEventListener('keyup', function() {
+    let textLength = box.value.length;
+    counter.innerText = textLength;
+    
+    // ১০ এর বেশি হলে লাল হবে
+    if (textLength > 10) {
+        counter.style.color = 'red';
+    } else {
+        counter.style.color = '#00e5ff'; // মূল কালার
+    }
+});
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ ডেমো: ক্যারেক্টার কাউন্টার</h3>
+                <p>নিচের বক্সে কিছু টাইপ করুন। দেখুন কিভাবে জাভাস্ক্রিপ্ট প্রতিটা অক্ষর গুনছে। (১০ অক্ষরের বেশি লিখলে সতর্ক করবে)</p>
+
+                <div class="output-box">
+                    <input type="text" id="demoInput" placeholder="এখানে কিছু লিখুন..." 
+                        onkeyup="
+                            let len = this.value.length;
+                            document.getElementById('demoCount').innerText = len;
+                            if(len > 10) {
+                                document.getElementById('demoCount').style.color = '#ff5722';
+                                document.getElementById('warnMsg').style.display = 'block';
+                            } else {
+                                document.getElementById('demoCount').style.color = '#2979ff';
+                                document.getElementById('warnMsg').style.display = 'none';
+                            }
+                        "
+                        style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; background: #fff; color: #333; margin-bottom: 10px;"
+                    >
+                    <p>অক্ষর সংখ্যা: <strong id="demoCount" style="color: #2979ff; font-size: 20px;">0</strong></p>
+                    <p id="warnMsg" style="color: #ff5722; font-size: 12px; display: none; font-weight: bold;">সতর্কতা: ১০ অক্ষরের বেশি হয়ে গেছে!</p>
+                </div>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #8 (অনুশীলন):</strong><br>
+                    "Create a JavaScript 'Dark Mode' toggle button using addEventListener. When clicked, it should toggle a 'dark-theme' class on the website body and change the button text from 'Dark' to 'Light'."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -497,7 +565,7 @@ function toggleLight() {
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =8 ; i <= 50; i++) {
+for (let i =9 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
