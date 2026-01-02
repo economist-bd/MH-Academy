@@ -551,6 +551,78 @@ box.addEventListener('keyup', function() {
         `
     },
     {
+        id: 9,
+        title: "অধ্যায় ৯: নির্ভুল তথ্য (Form Validation)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                আপনি যখন ফেসবুকে সাইন-আপ করেন, তখন ইমেইল না দিলে বা পাসওয়ার্ড খুব ছোট হলে এটি আপনাকে লাল রঙের ওয়ার্নিং দেখায়। এটিই ফর্ম ভ্যালিডেশন। সার্ভারে ভুল বা ফালতু ডাটা পাঠানো আটকানোর জন্য এটি ব্যবহার করা হয়।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">কিভাবে চেক করবেন?</h3>
+                <p>আমরা সাধারণত ফর্ম সাবমিট করার আগে বা টাইপ করার সময় জাভাস্ক্রিপ্ট দিয়ে চেক করি:</p>
+                <ul style="margin-left: 20px; list-style-type: disc; margin-top: 10px;">
+                    <li>ঘরটি খালি কিনা? (Required)</li>
+                    <li>পাসওয়ার্ড যথেষ্ট শক্তিশালী কিনা? (Length check)</li>
+                    <li>ইমেইলে '@' আছে কিনা? (Pattern check)</li>
+                </ul>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ প্রজেক্ট: পাসওয়ার্ড চেকার</h3>
+                <p>নিচের কোডটি দেখুন। এখানে ইউজার পাসওয়ার্ড টাইপ করার সাথে সাথে আমরা তাকে জানাবো পাসওয়ার্ডটি 'দুর্বল' নাকি 'শক্তিশালী'।</p>
+
+                <div class="code-block">
+function checkPassword() {
+    let pass = document.getElementById('myPass').value;
+    let msg = document.getElementById('msg');
+
+    if (pass.length < 6) {
+        msg.innerText = "খুব ছোট! (কমপক্ষে ৬ অক্ষর দিন)";
+        msg.style.color = "red";
+    } else {
+        msg.innerText = "চমৎকার! শক্তিশালী পাসওয়ার্ড।";
+        msg.style.color = "#00e5ff"; // সবুজ/নীল
+    }
+}
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ ডেমো (টাইপ করে দেখুন)</h3>
+                <div class="output-box">
+                    <label style="display: block; margin-bottom: 5px;">পাসওয়ার্ড দিন:</label>
+                    <input type="password" id="demoPass" placeholder="******" 
+                        onkeyup="
+                            let p = this.value;
+                            let m = document.getElementById('demoMsg');
+                            let b = this; // input box
+                            
+                            if(p.length === 0) {
+                                m.innerText = '';
+                                b.style.borderColor = '#ccc';
+                            } else if (p.length < 6) {
+                                m.innerText = '❌ খুব দুর্বল (আরও বড় করুন)';
+                                m.style.color = '#ff5722';
+                                b.style.borderColor = '#ff5722';
+                            } else {
+                                m.innerText = '✅ শক্তিশালী পাসওয়ার্ড';
+                                m.style.color = '#00e5ff';
+                                b.style.borderColor = '#00e5ff';
+                            }
+                        "
+                        style="width: 100%; padding: 10px; border-radius: 5px; border: 2px solid #ccc; background: #fff; color: #333; outline: none; transition: 0.3s;"
+                    >
+                    <p id="demoMsg" style="font-size: 14px; margin-top: 5px; font-weight: bold; min-height: 20px;"></p>
+                </div>
+
+                <p style="font-size: 14px; color: #ccc; margin-top: 10px;"><em>টিপস: সাধারণত পাসওয়ার্ড ফিল্ডের নিচে লাল কালিতে ভুলগুলো দেখানো হয়, যাতে ইউজার সহজেই বুঝতে পারে।</em></p>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #9 (অনুশীলন):</strong><br>
+                    "Write a JavaScript form validation script. It should check if the 'Email' field contains an '@' symbol and if the 'Confirm Password' field matches the 'Password' field. If not, display an error message below the form."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -565,7 +637,7 @@ box.addEventListener('keyup', function() {
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =9 ; i <= 50; i++) {
+for (let i =10 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
