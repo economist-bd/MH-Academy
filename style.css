@@ -144,3 +144,52 @@ body { background: var(--dark-bg); color: var(--text); overflow-x: hidden; }
 
     .content-area { padding: 20px 15px; width: 100%; }
 }
+/* --- Book Cover Design --- */
+.book-cover-container {
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    min-height: 80vh; text-align: center;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid #334155; border-radius: 15px;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.5), inset 5px 0 0 var(--primary); /* Spine effect */
+    padding: 40px 20px; margin-top: 20px; position: relative; overflow: hidden;
+}
+
+/* Decorative Background Elements */
+.book-cover-container::before {
+    content: ''; position: absolute; top: -50px; right: -50px;
+    width: 200px; height: 200px; background: var(--primary);
+    opacity: 0.1; border-radius: 50%; filter: blur(50px);
+}
+
+.book-title {
+    font-size: 3rem; font-weight: 800; color: white;
+    text-transform: uppercase; letter-spacing: 2px;
+    background: linear-gradient(90deg, #fff, var(--primary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 10px; line-height: 1.2;
+}
+
+.book-slogan {
+    font-size: 1.2rem; color: #94a3b8; font-style: italic; margin-bottom: 40px;
+    border-bottom: 2px solid var(--secondary); display: inline-block; padding-bottom: 10px;
+}
+
+.book-author-box {
+    background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 400px;
+}
+
+.book-author-img {
+    width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--primary);
+    margin-bottom: 15px; object-fit: cover;
+}
+
+.start-indicator {
+    margin-top: 30px; font-size: 14px; color: var(--secondary);
+    animation: bounce 2s infinite;
+}
+
+@media (max-width: 768px) {
+    .book-title { font-size: 2rem; }
+    .book-cover-container { min-height: 70vh; margin-top: 0; }
+}
