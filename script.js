@@ -1153,6 +1153,96 @@ git push origin main
         `
     },
     {
+        id: 16,
+        title: "অধ্যায় ১৬: আপনার ওয়েবসাইট লাইভ করুন (Hosting & Deployment)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                আপনার কম্পিউটারের হার্ডড্রাইভে পড়ে থাকা ওয়েবসাইটটি আপনি ছাড়া আর কেউ দেখতে পাচ্ছে না। বন্ধুদের বা ক্লায়েন্টকে দেখাতে হলে এটিকে ইন্টারনেটে তুলতে হবে। এই প্রক্রিয়াকেই বলা হয় <strong>Hosting বা Deployment</strong>।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">ডোমেইন ও হোস্টিং কী?</h3>
+                <ul style="margin-left: 20px; list-style-type: none; margin-top: 10px;">
+                    <li style="margin-bottom: 10px;">🏠 <strong>হোস্টিং (Hosting):</strong> ইন্টারনেটে আপনার ওয়েবসাইটের ফাইলগুলো রাখার জায়গা (জমি)।</li>
+                    <li style="margin-bottom: 10px;">🏷️ <strong>ডোমেইন (Domain):</strong> আপনার ওয়েবসাইটের নাম বা ঠিকানা (যেমন: google.com)।</li>
+                </ul>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">ফ্রিতে ওয়েবসাইট লাইভ করার উপায়</h3>
+                <p>নতুন ডেভেলপার হিসেবে হোস্টিং কেনার দরকার নেই। সেরা তিনটি ফ্রি মাধ্যম হলো:</p>
+                <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>GitHub Pages:</strong> গিটহাব রিপোজিটরি থেকে সরাসরি লাইভ করা যায়।</li>
+                    <li><strong>Netlify:</strong> ফোল্ডার ড্র্যাগ-এন্ড-ড্রপ করেই সাইট লাইভ করা যায়।</li>
+                    <li><strong>Vercel:</strong> আধুনিক ফ্রেমওয়ার্ক (React, Next.js) এর জন্য সেরা।</li>
+                </ol>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">ডিপ্লয়মেন্ট সিমুলেটর (Live Demo)</h3>
+                <p>নিচে একটি সিমুলেশন দেওয়া হলো। দেখুন কিভাবে ফাইল আপলোড হয়ে একটি লাইভ লিংক তৈরি হয়। <strong>"Deploy Now"</strong> বাটনে ক্লিক করুন।</p>
+
+                <div class="output-box" style="text-align: center; padding: 30px;">
+                    <div id="uploadArea" style="border: 2px dashed #555; padding: 20px; border-radius: 10px; margin-bottom: 20px; transition: 0.3s;">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 40px; color: #888;"></i>
+                        <p style="color: #aaa;">আপনার প্রজেক্ট ফোল্ডার আপলোড হচ্ছে...</p>
+                    </div>
+
+                    <div id="progressBarContainer" style="width: 100%; background: #333; height: 10px; border-radius: 5px; display: none; margin-bottom: 20px; overflow: hidden;">
+                        <div id="progressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #00e5ff, #2979ff); transition: width 0.1s;"></div>
+                    </div>
+
+                    <div id="successMsg" style="display: none;">
+                        <h3 style="color: #00e5ff;">🎉 অভিনন্দন! আপনার সাইট লাইভ হয়েছে।</h3>
+                        <p>আপনার লাইভ লিংক:</p>
+                        <a href="#" style="color: #ff5722; font-weight: bold; text-decoration: underline;">https://mh-academy-student.netlify.app</a>
+                    </div>
+
+                    <button id="deployBtn" onclick="simulateDeploy()" style="padding: 12px 30px; background: #28a745; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px;">
+                        🚀 Deploy Now
+                    </button>
+                </div>
+
+                <script>
+                    function simulateDeploy() {
+                        const btn = document.getElementById('deployBtn');
+                        const area = document.getElementById('uploadArea');
+                        const progressContainer = document.getElementById('progressBarContainer');
+                        const bar = document.getElementById('progressBar');
+                        const success = document.getElementById('successMsg');
+
+                        btn.style.display = 'none'; // বাটন লুকাও
+                        area.style.borderColor = '#00e5ff';
+                        area.innerHTML = '<i class="fas fa-cog fa-spin" style="font-size: 40px; color: #00e5ff;"></i><p style="color: #fff;">বিল্ডিং হচ্ছে...</p>';
+                        
+                        progressContainer.style.display = 'block';
+
+                        let width = 0;
+                        let interval = setInterval(() => {
+                            if (width >= 100) {
+                                clearInterval(interval);
+                                area.style.display = 'none';
+                                progressContainer.style.display = 'none';
+                                success.style.display = 'block';
+                            } else {
+                                width++;
+                                bar.style.width = width + '%';
+                            }
+                        }, 30); // স্পিড কন্ট্রোল
+                    }
+                </script>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">GitHub Pages গাইড</h3>
+                <p>১. আপনার গিটহাব রিপোজিটরিতে যান।<br>
+                ২. <strong>Settings</strong> > <strong>Pages</strong> এ ক্লিক করুন।<br>
+                ৩. Branch হিসেবে <code>main</code> সিলেক্ট করে Save দিন।<br>
+                ৪. ১-২ মিনিট পর আপনি একটি লিংক পাবেন।</p>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #16 (অনুশীলন):</strong><br>
+                    "I have a static HTML/CSS website. Explain step-by-step how to host it for free using Netlify Drop simply by dragging the folder."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -1167,7 +1257,7 @@ git push origin main
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =17 ; i <= 50; i++) {
+for (let i =18 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
