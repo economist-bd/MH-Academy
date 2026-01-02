@@ -1706,14 +1706,331 @@ import { Link } from 'react-router-dom';
         `
     },
     {
-        id: 25,
-        title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
+        id: 23,
+        title: "অধ্যায় ২৩: ডাটা যখন সবার (React Context API)",
         content: `
-            <h3>আজ আমরা একটি সম্পূর্ণ ল্যান্ডিং পেজ বানাবো।</h3>
-            <p>নিচের প্রম্পটি ব্যবহার করে ৫ মিনিটের মধ্যে একটি মডার্ন ল্যান্ডিং পেজ তৈরি করুন।</p>
-            <div class="prompt-box">
-                <strong>🤖 AI Prompt #25:</strong><br>
-                "Create a responsive landing page for a coffee shop using HTML and CSS flexbox. Use a dark brown color theme. Include a hero section with a background image, a menu section with 3 items, and a contact form."
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                ধরুন, দাদাজান (Grandparent) তার নাতিকে (Child) ১০০ টাকা দিতে চান। তিনি প্রথমে টাকাটা বাবাকে দিলেন, বাবা সেটা নাতিকে দিলেন। এটা ঝামেলার কাজ। <strong>Context API</strong> হলো ডিজিটাল ব্যাংকিংয়ের মতো—দাদাজান সরাসরি নাতির একাউন্টে টাকা পাঠিয়ে দেবেন, বাবাকে ডাকার দরকার নেই।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">Prop Drilling সমস্যা</h3>
+                <p>বড় প্রজেক্টে যখন ৫-৬ লেভেল নিচে ডাটা পাঠাতে হয়, তখন কোড নোংরা হয়ে যায়। Context API এই সমস্যার সমাধান করে গ্লোবাল ডাটা স্টোর তৈরি করে।</p>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">কিভাবে ব্যবহার করবেন? (৩টি ধাপ)</h3>
+                <ul style="margin-left: 20px; list-style-type: none; margin-top: 10px;">
+                    <li>1️⃣ <strong>Create Context:</strong> একটি ডাটার গুদাম তৈরি করা।</li>
+                    <li>2️⃣ <strong>Provider:</strong> অ্যাপের সবাইকে জানিয়ে দেওয়া যে গুদাম খোলা আছে।</li>
+                    <li>3️⃣ <strong>useContext:</strong> যার যার দরকার সে সরাসরি ডাটা নিয়ে নেবে।</li>
+                </ul>
+
+                <div class="code-block">
+import { useContext, createContext } from 'react';
+
+// ১. গুদাম তৈরি
+const UserContext = createContext();
+
+function App() {
+  return (
+    // ২. সবাইকে অ্যাক্সেস দেওয়া (Provider)
+    &lt;UserContext.Provider value="মঞ্জুরুল"&gt;
+      &lt;Navbar /&gt;
+    &lt;/UserContext.Provider&gt;
+  );
+}
+
+function Navbar() {
+  // ৩. সরাসরি ডাটা ব্যবহার (useContext)
+  const user = useContext(UserContext);
+  return &lt;h1&gt;স্বাগতম, {user}&lt;/h1&gt;;
+}
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ ভিজ্যুয়ালাইজেশন</h3>
+                <p>নিচের ডায়াগ্রামে দেখুন। <strong>"Grandparent"</strong> এর কাছে একটি কালার আছে। মাঝখানের <strong>"Parent"</strong> কে না জানিয়েই একদম ভেতরের <strong>"Child"</strong> সেই কালারটি ব্যবহার করছে।</p>
+
+                <div class="output-box" style="padding: 20px; text-align: center;">
+                    <div id="gpBox" style="border: 2px dashed #555; padding: 20px; border-radius: 10px;">
+                        <span style="background: #333; padding: 2px 8px; border-radius: 4px; font-size: 12px;">Grandparent (Provider)</span>
+                        <p>Global Color: <strong id="globalColor" style="color: #00e5ff;">Blue (#00e5ff)</strong></p>
+                        
+                        <div style="border: 2px solid #444; margin: 20px; padding: 20px; border-radius: 8px;">
+                            <span style="background: #333; padding: 2px 8px; border-radius: 4px; font-size: 12px;">Parent (No Props Passed)</span>
+                            <p style="font-size: 12px; color: #aaa;">আমি শুধু মাঝখানে বসে আছি, ডাটা ধরছি না।</p>
+
+                            <div style="border: 2px solid var(--primary); margin: 10px; padding: 20px; border-radius: 8px; transition: 0.3s;" id="childBox">
+                                <span style="background: var(--primary); color: black; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold;">Child (Consumer)</span>
+                                <br><br>
+                                <button onclick="toggleContextColor()" style="cursor: pointer; padding: 8px 15px; border: none; border-radius: 5px; background: white; color: black; font-weight: bold;">
+                                    Change Global Context
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    let isBlue = true;
+                    function toggleContextColor() {
+                        isBlue = !isBlue;
+                        const color = isBlue ? '#00e5ff' : '#ff5722'; // Blue or Orange
+                        const name = isBlue ? 'Blue (#00e5ff)' : 'Orange (#ff5722)';
+                        
+                        // Updating UI
+                        document.getElementById('globalColor').innerText = name;
+                        document.getElementById('globalColor').style.color = color;
+                        document.getElementById('childBox').style.borderColor = color;
+                        document.querySelector('#childBox span').style.background = color;
+                    }
+                </script>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">কখন ব্যবহার করবেন?</h3>
+                <p>সব ডাটার জন্য Context ব্যবহার করবেন না। শুধুমাত্র গ্লোবাল ডাটা যেমন: <strong>User Auth (লগইন তথ্য)</strong>, <strong>Theme (Dark/Light mode)</strong>, বা <strong>Language</strong> সেটিংয়ের জন্য এটি সেরা।</p>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #23 (অনুশীলন):</strong><br>
+                    "Create a React Context named 'ThemeContext' to manage Dark Mode and Light Mode. Wrap the entire app with a Provider and create a toggle button in the Navbar to switch themes using useContext."
+                </div>
+            </div>
+        `
+    },
+    {
+        id: 24,
+        title: "অধ্যায় ২৪: রিয়েল টাইমে ডাটা লোডিং (Fetching in React)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                React এ সার্ভার থেকে ডাটা আনার জন্য আমরা সাধারণত <code>useEffect</code> এবং <code>fetch</code> (বা Axios) একসাথে ব্যবহার করি। একটি আদর্শ ডাটা ফেচিং সিস্টেমে ৩টি অবস্থা (State) থাকে:</p>
+                
+                
+
+                <ul style="margin-left: 20px; list-style-type: none; margin-top: 10px;">
+                    <li>⏳ <strong>Loading:</strong> যখন ডাটা ইন্টারনেট থেকে নামছে।</li>
+                    <li>✅ <strong>Success:</strong> যখন ডাটা চলে এসেছে এবং আমরা দেখাচ্ছি।</li>
+                    <li>❌ <strong>Error:</strong> যদি সার্ভার বা ইন্টারনেটে সমস্যা থাকে।</li>
+                </ul>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">কোড প্যাটার্ন (Standard Pattern)</h3>
+                <p>নিচের কোডটি খুব ভালো করে লক্ষ্য করুন। এটি React ডেভেলপারদের প্রতিদিন ব্যবহার করতে হয়।</p>
+
+                <div class="code-block">
+const [users, setUsers] = useState([]);
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+    fetch('https://api.example.com/users')
+      .then(res => res.json())
+      .then(data => {
+          setUsers(data);    // ডাটা সেভ করলাম
+          setLoading(false); // লোডিং বন্ধ করলাম
+      });
+}, []); // ⚠️ খালি অ্যারে [] খুব জরুরি, নাহলে লুপে পড়ে যাবে!
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">কন্ডিশনাল রেন্ডারিং (Magic)</h3>
+                <p>লোডিং অবস্থায় এক রকম ডিজাইন, আর ডাটা আসলে অন্য রকম ডিজাইন দেখানোকে বলে <strong>Conditional Rendering</strong>।</p>
+                <div class="code-block">
+if (loading) {
+    return &lt;h1&gt;অপেক্ষা করুন...&lt;/h1&gt;;
+}
+return &lt;div&gt;{users.map(...)}&lt;/div&gt;;
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ সিমুলেটর: ইউজার লোডার</h3>
+                <p>নিচের <strong>"Load Data"</strong> বাটনে ক্লিক করুন। ২ সেকেন্ড লোডিং হওয়ার পর ডাটা আসবে। এটি রিয়েল এপিআই কলের মতো আচরণ করবে।</p>
+
+                <div class="output-box" style="text-align: center; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    
+                    <div id="loaderSpinner" style="display: none; margin-bottom: 20px;">
+                        <div style="width: 40px; height: 40px; border: 4px solid #333; border-top: 4px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                        <p style="color: #aaa; margin-top: 10px;">সার্ভার থেকে ডাটা আসছে...</p>
+                    </div>
+
+                    <div id="dataContainer" style="width: 100%;">
+                        <div style="padding: 20px; border: 2px dashed #444; border-radius: 10px; color: #666;">
+                            কোনো ডাটা লোড করা হয়নি
+                        </div>
+                    </div>
+
+                    <button onclick="fetchReactDemo()" style="margin-top: 20px; padding: 10px 25px; background: linear-gradient(45deg, #00e5ff, #2979ff); border: none; color: white; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3);">
+                        🔄 Load Data
+                    </button>
+                </div>
+
+                <style>
+                    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+                    .user-card-demo {
+                        background: #1e293b; padding: 10px; margin: 5px 0; border-radius: 5px; 
+                        display: flex; align-items: center; gap: 10px; text-align: left;
+                        animation: fadeIn 0.5s ease; border-left: 3px solid var(--primary);
+                    }
+                </style>
+
+                <script>
+                    function fetchReactDemo() {
+                        const loader = document.getElementById('loaderSpinner');
+                        const container = document.getElementById('dataContainer');
+                        
+                        // ১. লোডিং শুরু
+                        container.innerHTML = ''; // আগের ডাটা ক্লিয়ার
+                        container.style.display = 'none';
+                        loader.style.display = 'flex';
+                        loader.style.flexDirection = 'column';
+                        loader.style.alignItems = 'center';
+
+                        // ২. ফেক এপিআই কল (২ সেকেন্ড দেরি)
+                        setTimeout(() => {
+                            // ৩. লোডিং শেষ এবং ডাটা প্রদর্শন
+                            loader.style.display = 'none';
+                            container.style.display = 'block';
+                            
+                            container.innerHTML = \`
+                                <div class="user-card-demo">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" style="width: 40px; height: 40px; border-radius: 50%;">
+                                    <div>
+                                        <h4 style="color:white; margin:0;">করিম রহমান</h4>
+                                        <small style="color:#aaa;">karim@example.com</small>
+                                    </div>
+                                </div>
+                                <div class="user-card-demo">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" style="width: 40px; height: 40px; border-radius: 50%;">
+                                    <div>
+                                        <h4 style="color:white; margin:0;">রহিমা খাতুন</h4>
+                                        <small style="color:#aaa;">rahima@example.com</small>
+                                    </div>
+                                </div>
+                            \`;
+                        }, 2000);
+                    }
+                </script>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #24 (অনুশীলন):</strong><br>
+                    "Write a React component that fetches weather data from an API. It should show a 'Loading...' text initially, the temperature if successful, and an 'Error: Failed to fetch' message if something goes wrong."
+                </div>
+            </div>
+        `
+    },
+    {
+        id: 25,
+        title: "অধ্যায় ২৫: স্পেশাল প্রজেক্ট - আপনার পোর্টফোলিও (Milestone)",
+        content: `
+            <div class="chapter-content">
+                <div style="background: linear-gradient(135deg, #1e293b, #0f172a); padding: 20px; border-radius: 10px; border: 1px solid var(--primary); text-align: center; margin-bottom: 20px;">
+                    <h2 style="color: var(--primary); margin: 0;">🎉 অভিনন্দন! হাফ সেঞ্চুরি (২৫) 🎉</h2>
+                    <p style="color: #ccc;">আপনি ওয়েব ডেভেলপমেন্ট কোর্সের অর্ধেক পথ সফলভাবে শেষ করেছেন। আজকের অধ্যায়টি কোনো পড়ালেখা নয়, আজ আমরা হাতে-কলমে একটি প্রজেক্ট বানাবো।</p>
+                </div>
+
+                <p><strong>প্রজেক্টের নাম:</strong> ডেভ-পোর্টফোলিও (DevPortfolio)<br>
+                <strong>কি কি থাকবে?</strong> হিরো সেকশন, টাইপিং ইফেক্ট, স্কিল বার এবং কন্টাক্ট বাটন।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">১. ব্লুপ্রিন্ট (স্ট্রাকচার)</h3>
+                <p>আমরা পুরো সাইটটিকে ৩টি প্রধান ভাগে ভাগ করব:</p>
+                <ul style="margin-left: 20px; list-style-type: none;">
+                    <li>🔹 <strong>Header:</strong> নাম এবং মেনু।</li>
+                    <li>🔹 <strong>Hero:</strong> নিজের ছবি এবং একটি ডায়নামিক টাইপিং টেক্সট।</li>
+                    <li>🔹 <strong>Footer:</strong> সোশ্যাল মিডিয়া লিংক।</li>
+                </ul>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">২. লাইভ কোডিং (Preview)</h3>
+                <p>নিচের উইন্ডোটি আপনার তৈরি করা পোর্টফোলিও। এটি সম্পূর্ণ HTML, CSS এবং JS দিয়ে তৈরি। বাটনগুলোতে মাউস নিয়ে দেখুন!</p>
+
+                <div class="output-box" style="padding: 0; overflow: hidden; border: 2px solid #333; height: 450px; position: relative;">
+                    
+                    <div style="background: #ddd; padding: 5px 10px; display: flex; gap: 5px; align-items: center;">
+                        <div style="width: 10px; height: 10px; background: #ff5f56; border-radius: 50%;"></div>
+                        <div style="width: 10px; height: 10px; background: #ffbd2e; border-radius: 50%;"></div>
+                        <div style="width: 10px; height: 10px; background: #27c93f; border-radius: 50%;"></div>
+                        <div style="background: white; flex: 1; margin-left: 10px; border-radius: 3px; font-size: 10px; padding: 2px 5px; color: #555;">
+                            www.my-portfolio.com
+                        </div>
+                    </div>
+
+                    <div style="background: #111; height: 100%; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Segoe UI', sans-serif;">
+                        
+                        <div style="position: relative;">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=200&h=200" 
+                                 style="width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--primary); object-fit: cover; box-shadow: 0 0 20px rgba(0,229,255,0.4);">
+                            <div style="position: absolute; bottom: 5px; right: 5px; background: #27c93f; width: 20px; height: 20px; border-radius: 50%; border: 2px solid #111;"></div>
+                        </div>
+
+                        <h2 style="margin: 15px 0 5px 0; font-size: 24px;">জন ডো (John Doe)</h2>
+                        
+                        <p style="font-size: 16px; color: #aaa; margin-bottom: 20px; height: 20px;">
+                            I am a <span id="type-text" style="color: var(--primary); font-weight: bold;"></span><span class="cursor">|</span>
+                        </p>
+
+                        <div style="display: flex; gap: 15px; margin-bottom: 25px;">
+                            <i class="fab fa-github" style="font-size: 20px; cursor: pointer; transition: 0.3s; color: #fff;"></i>
+                            <i class="fab fa-linkedin" style="font-size: 20px; cursor: pointer; transition: 0.3s; color: #0077b5;"></i>
+                            <i class="fab fa-twitter" style="font-size: 20px; cursor: pointer; transition: 0.3s; color: #1da1f2;"></i>
+                        </div>
+
+                        <div style="display: flex; gap: 10px;">
+                            <button style="padding: 10px 20px; background: var(--primary); border: none; border-radius: 5px; color: black; font-weight: bold; cursor: pointer; box-shadow: 0 5px 15px rgba(0,229,255,0.2);">
+                                Hire Me
+                            </button>
+                            <button style="padding: 10px 20px; background: transparent; border: 1px solid white; border-radius: 5px; color: white; font-weight: bold; cursor: pointer;">
+                                Download CV
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    .cursor { animation: blink 1s infinite; color: var(--primary); }
+                    @keyframes blink { 50% { opacity: 0; } }
+                </style>
+
+                <script>
+                    // টাইপিং ইফেক্ট লজিক (শুধুমাত্র এই স্লাইডের জন্য)
+                    (function() {
+                        const textElement = document.getElementById('type-text');
+                        if(!textElement) return;
+
+                        const words = ["Web Developer", "React Lover", "UI/UX Designer"];
+                        let wordIndex = 0;
+                        let charIndex = 0;
+                        let isDeleting = false;
+
+                        function type() {
+                            const currentWord = words[wordIndex];
+                            
+                            if (isDeleting) {
+                                textElement.innerText = currentWord.substring(0, charIndex - 1);
+                                charIndex--;
+                            } else {
+                                textElement.innerText = currentWord.substring(0, charIndex + 1);
+                                charIndex++;
+                            }
+
+                            if (!isDeleting && charIndex === currentWord.length) {
+                                isDeleting = true;
+                                setTimeout(type, 2000); // শব্দ শেষ হলে ২ সেকেন্ড অপেক্ষা
+                            } else if (isDeleting && charIndex === 0) {
+                                isDeleting = false;
+                                wordIndex = (wordIndex + 1) % words.length;
+                                setTimeout(type, 500);
+                            } else {
+                                setTimeout(type, isDeleting ? 100 : 200);
+                            }
+                        }
+                        type();
+                    })();
+                </script>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">৩. চ্যালেঞ্জ (Homework)</h3>
+                <div class="code-block" style="background: #1e1e1e; border-left: 4px solid #ffbd2e;">
+                    <p style="margin: 0;">আপনার কাজ হলো উপরের ডিজাইনের সাথে একটি <strong>"Contact Me"</strong> ফর্ম যুক্ত করা যেখানে ইউজার নাম এবং ইমেইল দিয়ে মেসেজ পাঠাতে পারবে।</p>
+                </div>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #25 (Portfolio Help):</strong><br>
+                    "Generate a responsive HTML/CSS code for a personal portfolio 'About Me' section. It should have a profile picture on the left and a short bio with a 'Read More' button on the right."
+                </div>
             </div>
         `
     }
@@ -1722,7 +2039,7 @@ import { Link } from 'react-router-dom';
 
 
 // বাকি অধ্যায়গুলো (২৩-৫০) লুপ দিয়ে তৈরি করা
-for (let i = 23; i <= 50; i++) {
+for (let i = 26; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে (যদি ম্যানুয়ালি থাকে)
     chaptersDB.push({
         id: i,
