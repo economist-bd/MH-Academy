@@ -623,6 +623,74 @@ function checkPassword() {
         `
     },
     {
+        id: 10,
+        title: "অধ্যায় ১০: ব্রাউজারের মেমোরি (Local Storage)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                আপনি খেয়াল করেছেন কি? ইউটিউবে ডার্ক মোড অন করলে পরে ব্রাউজার ওপেন করলেও সেটা ডার্কই থাকে। অথবা ই-কমার্স সাইটে কার্টে পণ্য যোগ করে পরে এলেও সেটা থাকে। এই জাদুর পেছনে কাজ করে <strong>Local Storage</strong>। এটি ইউজারের ব্রাউজারে ৫-১০ মেগাবাইট পর্যন্ত টেক্সট ডাটা সেভ রাখতে পারে।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">কিভাবে ডাটা সেভ ও লোড করবেন?</h3>
+                <p>এটি ব্যবহার করা খুব সহজ। মাত্র দুটি প্রধান কমান্ড জানলেই কেল্লাফতে!</p>
+                <ul style="margin-left: 20px; list-style-type: disc; margin-top: 10px;">
+                    <li><code>localStorage.setItem('key', 'value')</code> - ডাটা রাখার জন্য।</li>
+                    <li><code>localStorage.getItem('key')</code> - ডাটা বের করার জন্য।</li>
+                </ul>
+
+                <div class="code-block">
+// নাম সেভ করা
+localStorage.setItem('username', 'Monjurul');
+
+// নাম পুনরুদ্ধার করা
+let user = localStorage.getItem('username');
+alert(user); // আউটপুট: Monjurul
+
+// ডাটা মুছে ফেলা
+localStorage.removeItem('username');
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ প্রজেক্ট: ম্যাজিক নোটপ্যাড</h3>
+                <p>নিচের বক্সে কিছু লিখুন এবং <strong>"সেভ করুন"</strong> বাটনে চাপুন। এরপর পেজটি রিফ্রেশ দিন (বা অন্য চ্যাপ্টারে গিয়ে ফিরে আসুন)। দেখবেন আপনার লেখাটি হারিয়ে যায়নি!</p>
+
+                <div class="output-box">
+                    <textarea id="myNote" placeholder="আজকের বাজার ফর্দ..." style="width: 100%; height: 80px; padding: 10px; border-radius: 5px; background: #fff; color: #333; margin-bottom: 10px;"></textarea>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="
+                            let note = document.getElementById('myNote').value;
+                            localStorage.setItem('savedNote', note);
+                            alert('নোট সেভ করা হয়েছে! পেজ রিফ্রেশ দিলেও এটি থাকবে।');
+                        " style="padding: 8px 15px; background: #00e5ff; color: #000; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">💾 সেভ করুন</button>
+
+                        <button onclick="
+                            let saved = localStorage.getItem('savedNote');
+                            if(saved) {
+                                document.getElementById('myNote').value = saved;
+                            } else {
+                                alert('কোনো নোট সেভ করা নেই!');
+                            }
+                        " style="padding: 8px 15px; background: #2979ff; color: white; border: none; border-radius: 4px; cursor: pointer;">📂 লোড করুন</button>
+                        
+                        <button onclick="
+                            localStorage.removeItem('savedNote');
+                            document.getElementById('myNote').value = '';
+                            alert('মেমোরি পরিষ্কার করা হয়েছে।');
+                        " style="padding: 8px 15px; background: #ff5722; color: white; border: none; border-radius: 4px; cursor: pointer;">🗑️ মুছুন</button>
+                    </div>
+                </div>
+                
+                <p style="font-size: 12px; color: #999; margin-top: 10px;">(নোট: আপনি যদি এই পেজটি রিলোড দেন, তাও "লোড করুন" বাটনে চাপলে আপনার আগের লেখা চলে আসবে।)</p>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #10 (অনুশীলন):</strong><br>
+                    "Create a simple To-Do List application using HTML, CSS, and JavaScript. Use LocalStorage to save the tasks so that they remain on the list even after the browser is closed and reopened."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -637,7 +705,7 @@ function checkPassword() {
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =10 ; i <= 50; i++) {
+for (let i =11 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
