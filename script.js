@@ -691,6 +691,72 @@ localStorage.removeItem('username');
         `
     },
     {
+        id: 11,
+        title: "অধ্যায় ১১: বাইরের দুনিয়ার সাথে সংযোগ (API & Fetch)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                আপনার ওয়েবসাইটের আবহাওয়া আপডেট বা খেলার স্কোর কি আপনি নিজে টাইপ করেন? অবশ্যই না! এগুলো আসে অন্য কোনো বড় সার্ভার থেকে। এই আদান-প্রদান করার মাধ্যম হলো <strong>API (Application Programming Interface)</strong>।</p>
+                
+                
+
+                <p>সহজ কথায়: আপনি রেস্টুরেন্টে (Client) ওয়েটারকে (API) অর্ডার দিলেন, ওয়েটার কিচেন (Server) থেকে খাবার (Data) এনে দিল।</p>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">Fetch: ডাটা আনার জাদুকর</h3>
+                <p>জাভাস্ক্রিপ্টে সার্ভার থেকে ডাটা ডাকার জন্য আমরা <code>fetch()</code> ব্যবহার করি। এটি একটি প্রমিস (Promise) বা ওয়াদা—সে বলে, "দাঁড়াও, আমি ডাটা নিয়ে আসছি।"</p>
+
+                <div class="code-block">
+fetch('https://api.example.com/data')
+  .then(response => response.json()) // ১. ডাটাকে পড়ার যোগ্য করা (JSON)
+  .then(data => {
+      console.log(data); // ২. ডাটা ব্যবহার করা
+  })
+  .catch(error => console.log('ভুল হয়েছে!', error)); // ৩. সমস্যা হলে জানানো
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">JSON কি?</h3>
+                <p>সার্ভার আমাদের সাথে যে ভাষায় কথা বলে তার নাম <strong>JSON</strong>। এটি দেখতে হুবহু জাভাস্ক্রিপ্ট অবজেক্টের মতো।</p>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ প্রজেক্ট: ফেক ইউজার জেনারেটর</h3>
+                <p>নিচের বাটনে ক্লিক করুন। আমরা সত্যিকারের একটি সার্ভার (RandomUser API) থেকে একজন মানুষের ছবি, নাম এবং ইমেইল নিয়ে আসব।</p>
+
+                <div class="output-box" style="text-align: center;">
+                    <div id="userCard" style="background: #1e293b; padding: 20px; border-radius: 10px; display: inline-block; min-width: 250px; border: 1px solid #334155;">
+                        <img id="userImg" src="https://via.placeholder.com/100" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--primary); margin-bottom: 10px;">
+                        <h3 id="userName" style="color: white; margin: 5px 0;">অপেক্ষা করছি...</h3>
+                        <p id="userEmail" style="color: #94a3b8; font-size: 13px;">নিচের বাটনে ক্লিক করুন</p>
+                    </div>
+                    <br><br>
+                    
+                    <button onclick="
+                        let btn = this;
+                        btn.innerText = 'লোড হচ্ছে...';
+                        fetch('https://randomuser.me/api/')
+                          .then(res => res.json())
+                          .then(data => {
+                              let person = data.results[0];
+                              document.getElementById('userImg').src = person.picture.large;
+                              document.getElementById('userName').innerText = person.name.first + ' ' + person.name.last;
+                              document.getElementById('userEmail').innerText = person.email;
+                              btn.innerText = 'নতুন মানুষ খুঁজুন';
+                          })
+                          .catch(err => {
+                              alert('ডাটা লোড করতে সমস্যা হয়েছে। ইন্টারনেট কানেকশন চেক করুন।');
+                              btn.innerText = 'আবার চেষ্টা করুন';
+                          });
+                    " style="padding: 10px 20px; background: linear-gradient(45deg, #ff5722, #f44336); color: white; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);">
+                        <i class="fas fa-user"></i> নতুন মানুষ খুঁজুন
+                    </button>
+                </div>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #11 (অনুশীলন):</strong><br>
+                    "Write a JavaScript code using the 'fetch' API to get the current Bitcoin price from 'https://api.coindesk.com/v1/bpi/currentprice.json' and display it in an HTML div with ID 'btc-price'."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -705,7 +771,7 @@ localStorage.removeItem('username');
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =11 ; i <= 50; i++) {
+for (let i =12 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
