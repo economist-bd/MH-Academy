@@ -1570,6 +1570,92 @@ function LikeButton() {
         `
     },
     {
+        id: 21,
+        title: "অধ্যায় ২১: রিঅ্যাক্ট হুকস (Hooks) এর জাদু",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                ফাংশনাল কম্পোনেন্ট আগে ছিল সাধারণ বোকা ফাংশন। কিন্তু <strong>Hooks</strong> আসার পর এরা সুপারপাওয়ার পেয়েছে। হুকস হলো বিশেষ ফাংশন যা আপনাকে রিঅ্যাক্টের ফিচারগুলো (state, lifecycle) ব্যবহার করতে দেয়।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">১. useState (কম্পোনেন্টের মেমোরি)</h3>
+                <p>সাধারণ ভেরিয়েবল ডাটা মনে রাখতে পারে না, রিফ্রেশ হলেই সব ভুলে যায়। কিন্তু <code>useState</code> ডাটা ধরে রাখে এবং ডাটা বদলালে স্ক্রিন আপডেট করে।</p>
+                <div class="code-block">
+const [count, setCount] = useState(0);
+
+// ব্যবহার:
+// count = বর্তমান মান (0)
+// setCount = মান বদলানোর সুইচ
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">২. useEffect (পার্শ্বপ্রতিক্রিয়া)</h3>
+                <p>স্ক্রিন লোড হওয়ার পর বা কোনো ডাটা বদলানোর পর যদি আপনি কিছু করতে চান (যেমন: সার্ভার থেকে ডাটা আনা, টাইটেল বদলানো), তবে <code>useEffect</code> ব্যবহার করতে হবে।</p>
+
+                <div class="code-block">
+useEffect(() => {
+    console.log("প্রতিবার রেন্ডারের পর আমি রান হবো!");
+}, [count]); // শুধু 'count' বদলালেই রান হবে
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ ল্যাব: হুকস সিমুলেশন</h3>
+                <p>নিচে একটি ডিজিটাল ঘড়ি এবং একটি কাউন্টার আছে। ঘড়িটি <code>useEffect</code> এর টাইমার দিয়ে চলছে, আর কাউন্টারটি <code>useState</code> দিয়ে ডাটা মনে রাখছে।</p>
+
+                <div class="output-box" style="text-align: center; border: 1px solid #334155; padding: 20px; border-radius: 10px;">
+                    <div style="margin-bottom: 20px; border-bottom: 1px dashed #555; padding-bottom: 20px;">
+                        <span style="color: #aaa; font-size: 12px;">useEffect Demo (Timer)</span>
+                        <h2 id="hookClock" style="font-family: monospace; color: #00e5ff; font-size: 30px;">00:00:00</h2>
+                    </div>
+
+                    <div>
+                        <span style="color: #aaa; font-size: 12px;">useState Demo (Counter)</span>
+                        <h1 id="hookCount" style="font-size: 40px; margin: 5px 0;">0</h1>
+                        <button onclick="hookIncrement()" style="padding: 8px 20px; background: var(--secondary); color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            ➕ বাড়ান (Update State)
+                        </button>
+                    </div>
+                </div>
+
+                <script>
+                    // useEffect Simulation (Clock)
+                    function startClock() {
+                        const clockEl = document.getElementById('hookClock');
+                        if(clockEl) {
+                            const now = new Date();
+                            clockEl.innerText = now.toLocaleTimeString();
+                        }
+                    }
+                    setInterval(startClock, 1000); // প্রতি ১ সেকেন্ডে কল হবে
+                    startClock(); // প্রথমবার কল
+
+                    // useState Simulation (Counter)
+                    let stateCount = 0;
+                    function hookIncrement() {
+                        stateCount++; // setState(count + 1)
+                        document.getElementById('hookCount').innerText = stateCount;
+                        
+                        // Visual Effect
+                        document.getElementById('hookCount').style.color = '#ff5722';
+                        setTimeout(() => {
+                            document.getElementById('hookCount').style.color = '#fff';
+                        }, 200);
+                    }
+                </script>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">Hooks এর নিয়ম (Rules of Hooks)</h3>
+                <ul style="margin-left: 20px; list-style-type: square; margin-top: 10px;">
+                    <li>Hooks সবসময় কম্পোনেন্টের <strong>একদম উপরে</strong> কল করতে হবে।</li>
+                    <li>কোনো লুপ বা শর্তের (if-else) ভেতরে Hooks লেখা যাবে না।</li>
+                </ul>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #21 (অনুশীলন):</strong><br>
+                    "Write a React functional component that uses 'useEffect' to fetch data from an API when the component mounts, and 'useState' to store and display that data."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -1584,7 +1670,7 @@ function LikeButton() {
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =21 ; i <= 50; i++) {
+for (let i =22 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
