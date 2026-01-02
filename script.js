@@ -331,6 +331,84 @@ alert(name + " এর বয়স " + age); // পপআপ দেখাবে
         `
     },
     {
+        id: 6,
+        title: "অধ্যায় ৬: দ্বিমাত্রিক দুনিয়া (CSS Grid)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                আমরা ফ্লেক্সবক্স শিখেছি, যা এক লাইনে সাজানোর জন্য সেরা। কিন্তু আপনি যদি খবরের কাগজের (Newspaper) মতো জটিল লেআউট বা ইমেজের গ্যালারি বানাতে চান, যেখানে সারি (Rows) এবং কলাম (Columns) একসাথে থাকবে, তখন আপনার দরকার <strong>CSS Grid</strong>।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">Grid এর জাদুকরী ইউনিট (fr)</h3>
+                <p>গ্রিড সিস্টেমে আমরা পিক্সেলের বদলে <code>fr</code> (fraction) ইউনিট ব্যবহার করি। এটি জায়গাকে সমান ভাগে ভাগ করে নেয়।</p>
+
+                <div class="code-block">
+.container {
+    display: grid;
+    /* ৩টি সমান কলাম তৈরি হবে */
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 10px; /* মাঝখানের ফাঁকা জায়গা */
+}
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ গ্রিড ল্যাব</h3>
+                <p>নিচের বাটনগুলোতে ক্লিক করে দেখুন কিভাবে গ্রিড লেআউট চোখের পলকে বদলে যায়।</p>
+
+                <div class="output-box">
+                    <style>
+                        .grid-demo {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr; /* Default */
+                            gap: 10px;
+                            background: #1e293b;
+                            padding: 10px;
+                            border-radius: 8px;
+                            transition: 0.3s;
+                        }
+                        .grid-item {
+                            background: var(--secondary);
+                            color: white;
+                            padding: 20px;
+                            text-align: center;
+                            border-radius: 4px;
+                            font-weight: bold;
+                        }
+                        .grid-item:nth-child(even) {
+                            background: #009688;
+                        }
+                    </style>
+
+                    <div style="margin-bottom: 15px; display: flex; gap: 5px; flex-wrap: wrap;">
+                        <button onclick="document.getElementById('myGrid').style.gridTemplateColumns='1fr 1fr 1fr'" style="cursor:pointer; padding: 5px;">৩ কলাম (সমান)</button>
+                        <button onclick="document.getElementById('myGrid').style.gridTemplateColumns='1fr 1fr'" style="cursor:pointer; padding: 5px;">২ কলাম</button>
+                        <button onclick="document.getElementById('myGrid').style.gridTemplateColumns='2fr 1fr'" style="cursor:pointer; padding: 5px;">অসমান (2fr 1fr)</button>
+                    </div>
+
+                    <div id="myGrid" class="grid-demo">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                        <div class="grid-item">4</div>
+                        <div class="grid-item">5</div>
+                        <div class="grid-item">6</div>
+                    </div>
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">Flexbox বনাম Grid: কোনটি কখন?</h3>
+                <ul style="margin-left: 20px; list-style-type: square; margin-top: 10px;">
+                    <li><strong>Flexbox:</strong> যখন ছোটখাটো অ্যালাইনমেন্ট দরকার (যেমন: মেনুবার, কার্ডের ভেতরের কন্টেন্ট)।</li>
+                    <li><strong>Grid:</strong> যখন পুরো পেইজের লেআউট বা গ্যালারি বানাতে হবে।</li>
+                </ul>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #6 (অনুশীলন):</strong><br>
+                    "Write CSS Grid code to create a photo gallery layout. It should have 4 columns on desktop, 2 columns on tablets, and 1 column on mobile screens using media queries."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -345,7 +423,7 @@ alert(name + " এর বয়স " + age); // পপআপ দেখাবে
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =6 ; i <= 50; i++) {
+for (let i =7 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
