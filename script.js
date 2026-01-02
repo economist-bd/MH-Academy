@@ -846,6 +846,99 @@ const { title, id } = user; // সরাসরি ভেরিয়েবল হ�
         `
     },
     {
+        id: 13,
+        title: "অধ্যায় ১৩: নড়াচড়ার জাদুকরি (CSS Animation)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                ওয়েবসাইটকে জীবন্ত করে তোলার জন্য অ্যানিমেশন খুব জরুরি। হঠাৎ করে কোনো রং বদলে যাওয়া দেখতে ভালো লাগে না, কিন্তু ধীরে ধীরে বদলালে (Transition) সেটা চোখের জন্য আরামদায়ক হয়।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">১. ট্রানজিশন (Transition)</h3>
+                <p>এটি হলো এক অবস্থা থেকে অন্য অবস্থায় যাওয়ার "স্মুথ" রাস্তা।</p>
+                <div class="code-block">
+.button {
+    background: blue;
+    transition: 0.5s; /* ০.৫ সেকেন্ড সময় নেবে */
+}
+.button:hover {
+    background: red; /* মাউস নিলে লাল হবে */
+}
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">২. কি-ফ্রেম অ্যানিমেশন (Keyframes)</h3>
+                <p>আপনি যদি কোনো বস্তুকে নাচাতে চান বা ঘোরাতে চান, তবে ব্যবহার করতে হবে <code>@keyframes</code>। এটি কার্টুন তৈরির মতো ফ্রেম-বাই-ফ্রেম কাজ করে।</p>
+
+                <div class="code-block">
+@keyframes mySpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.box {
+    animation: mySpin 2s infinite linear; /* অনন্তকাল ঘুরবে */
+}
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ অ্যানিমেশন স্টুডিও</h3>
+                <p>নিচের শেপটি নিয়ে খেলুন! বিভিন্ন বাটনে ক্লিক করে দেখুন CSS কি করতে পারে।</p>
+
+                <div class="output-box" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                    <style>
+                        .anim-shape {
+                            width: 100px;
+                            height: 100px;
+                            background: linear-gradient(135deg, #00e5ff, #2979ff);
+                            border-radius: 10px;
+                            transition: all 0.5s ease; /* ট্রানজিশন */
+                            display: flex; align-items: center; justify-content: center;
+                            font-weight: bold; color: white;
+                            box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+                        }
+                        
+                        /* অ্যানিমেশন ক্লাসসমূহ */
+                        .circle-mode { border-radius: 50%; background: #ff5722; }
+                        .spin-mode { animation: spin 1s infinite linear; }
+                        .bounce-mode { animation: bounce 0.6s infinite alternate; }
+                        
+                        @keyframes spin { 100% { transform: rotate(360deg); } }
+                        @keyframes bounce { 
+                            from { transform: translateY(0); } 
+                            to { transform: translateY(-30px); } 
+                        }
+                    </style>
+
+                    <div id="magicBox" class="anim-shape">আমি নড়ি!</div>
+
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                        <button onclick="document.getElementById('magicBox').className = 'anim-shape circle-mode'" 
+                            style="padding: 8px 15px; background: #333; border: 1px solid #555; color: white; cursor: pointer; border-radius: 5px;">
+                            গোল করো
+                        </button>
+                        <button onclick="document.getElementById('magicBox').className = 'anim-shape spin-mode'" 
+                            style="padding: 8px 15px; background: #333; border: 1px solid #555; color: white; cursor: pointer; border-radius: 5px;">
+                            ঘোরাও
+                        </button>
+                        <button onclick="document.getElementById('magicBox').className = 'anim-shape bounce-mode'" 
+                            style="padding: 8px 15px; background: #333; border: 1px solid #555; color: white; cursor: pointer; border-radius: 5px;">
+                            লাফাও
+                        </button>
+                        <button onclick="document.getElementById('magicBox').className = 'anim-shape'" 
+                            style="padding: 8px 15px; background: #ff5722; border: none; color: white; cursor: pointer; border-radius: 5px;">
+                            রিসেট
+                        </button>
+                    </div>
+                </div>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #13 (অনুশীলন):</strong><br>
+                    "Create a CSS code for a 'Loading Spinner'. It should be a circle with a transparent border and a blue top border, spinning infinitely using @keyframes."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -860,7 +953,7 @@ const { title, id } = user; // সরাসরি ভেরিয়েবল হ�
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =13 ; i <= 50; i++) {
+for (let i =14 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
