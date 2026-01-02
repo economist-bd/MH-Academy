@@ -105,7 +105,7 @@ function loadChapter(id) {
         <hr style="border-color: #334155;">
         <div class="author-card">
             <div class="author-img-wrapper">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Monjurul Haque" class="author-img">
+                <img src="https://i.ibb.co.com/Fq7xch1V/Gemini-Generated-Image-dwbjl5dwbjl5dwbj-Copy-Copy.png" alt="Monjurul Haque" class="author-img">
             </div>
             <div class="author-info">
                 <h3>মঞ্জুরুল হক</h3>
