@@ -1487,6 +1487,89 @@ body {
         `
     },
     {
+        id: 20,
+        title: "অধ্যায় ২০: আধুনিক ফ্রন্টএন্ডের রাজা (React.js পরিচিতি)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                সাধারণ এইচটিএমএল দিয়ে বড় ওয়েবসাইট বানাতে গেলে কোড জগাখিচুড়ি হয়ে যায়। <strong>React.js</strong> আমাদের শেখায় কিভাবে ওয়েবসাইটকে ছোট ছোট টুকরো বা <strong>Component</strong> এ ভাগ করে বানাতে হয়। এটি অনেকটা LEGO গেমের মতো। ছোট ছোট ব্লক জোড়া দিয়ে পুরো ওয়েবসাইট তৈরি হয়।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">কেন React সেরা?</h3>
+                <ul style="margin-left: 20px; list-style-type: disc; margin-top: 10px;">
+                    <li><strong>Component Based:</strong> একবার বাটন বানিয়ে হাজারবার ব্যবহার করা যায়।</li>
+                    <li><strong>Virtual DOM:</strong> এটি পুরো পেজ রিলোড না দিয়ে শুধু যেটুকু পরিবর্তন দরকার, সেটুকুই আপডেট করে। তাই এটি রকেটের মতো ফাস্ট।</li>
+                    <li><strong>চাহিদা:</strong> বর্তমানে ফ্রন্টএন্ড চাকরির বাজারে React এর দাপট সবচেয়ে বেশি।</li>
+                </ul>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">JSX: জাভাস্ক্রিপ্টের পেটে HTML</h3>
+                <p>React এ আমরা জাভাস্ক্রিপ্টের ভেতরেই HTML লিখি। একে বলা হয় <strong>JSX</strong>। দেখতে অদ্ভুত হলেও এটি খুব শক্তিশালী।</p>
+
+                <div class="code-block">
+// React Component এর উদাহরণ
+function LikeButton() {
+    const [likes, setLikes] = useState(0); // ডাটা (State)
+
+    return (
+        &lt;button onClick={() => setLikes(likes + 1)}&gt;
+            👍 লাইক দিয়েছেন {likes} জন
+        &lt;/button&gt;
+    );
+}
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ ডেমো: React এর ক্ষমতা (Simulated)</h3>
+                <p>নিচের উদাহরণটি দেখুন। সাধারণ জাভাস্ক্রিপ্টে আমাদের ম্যানুয়ালি খুঁজে বের করে আপডেট করতে হয়। কিন্তু React এ শুধু ভেরিয়েবল (State) পরিবর্তন করলেই স্ক্রিন অটোমেটিক আপডেট হয়ে যায়।</p>
+
+                <div class="output-box" style="text-align: center; padding: 30px;">
+                    <h2 id="reactCountDisplay" style="font-size: 40px; margin: 0; color: #00e5ff;">0</h2>
+                    <p style="color: #aaa;">টি লাইক</p>
+                    
+                    <div style="margin-top: 20px;">
+                        <button onclick="updateReactState(1)" style="padding: 10px 20px; font-size: 18px; border: none; background: #2979ff; color: white; border-radius: 50px; cursor: pointer; margin: 5px; transition: 0.2s;">
+                            👍 লাইক দিন
+                        </button>
+                        <button onclick="updateReactState(-1)" style="padding: 10px 20px; font-size: 18px; border: none; background: #ff5722; color: white; border-radius: 50px; cursor: pointer; margin: 5px; transition: 0.2s;">
+                            👎 আনলাইক
+                        </button>
+                    </div>
+                </div>
+
+                <script>
+                    // React State সিমুলেশন
+                    let count = 0;
+                    function updateReactState(val) {
+                        count += val;
+                        if(count < 0) count = 0;
+                        
+                        // React ঠিক এই কাজটিই অটোমেটিক করে দেয়
+                        document.getElementById('reactCountDisplay').innerText = count;
+                        
+                        // একটু এনিমেশন ইফেক্ট
+                        const display = document.getElementById('reactCountDisplay');
+                        display.style.transform = "scale(1.2)";
+                        setTimeout(() => {
+                            display.style.transform = "scale(1)";
+                        }, 100);
+                    }
+                </script>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">React শিখতে কি কি লাগবে?</h3>
+                <p>React শুরু করার আগে আপনাকে অবশ্যই জানতে হবে:</p>
+                <ol style="margin-left: 20px;">
+                    <li>HTML & CSS (মোটামুটি)</li>
+                    <li>JavaScript (ES6 Features - যা আমরা অধ্যায় ১২ তে শিখেছি)</li>
+                </ol>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #20 (অনুশীলন):</strong><br>
+                    "Write a functional React component named 'ProfileCard'. It should accept 'name' and 'job' as props and display them inside a styled div card."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -1501,7 +1584,7 @@ body {
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =20 ; i <= 50; i++) {
+for (let i =21 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
