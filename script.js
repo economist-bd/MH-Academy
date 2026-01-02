@@ -1300,6 +1300,105 @@ console.log(x + y + z);
         `
     },
     {
+        id: 18,
+        title: "অধ্যায় ১৮: CSS এর সুপারপাওয়ার (SASS/SCSS)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                সাধারণ CSS এ একই কালার কোড বা ফন্ট বারবার লিখতে হয়। কোড অনেক বড় হয়ে গেলে খুঁজে পাওয়া কঠিন হয়। <strong>SASS (Syntactically Awesome Style Sheets)</strong> এই সমস্যার সমাধান। এটি একটি প্রি-প্রসেসর, অর্থাৎ আপনি SASS এ কোড লিখবেন, আর একটি সফটওয়্যার সেটাকে সাধারণ CSS এ কনভার্ট করে ব্রাউজারকে দেবে।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">SASS এর ৩টি জাদুকরী ফিচার</h3>
+
+                <h4>১. ভেরিয়েবল (Variables)</h4>
+                <p>বারবার <code>#ff5722</code> না লিখে আপনি একটি ভেরিয়েবল বানিয়ে পুরো প্রজেক্টে ব্যবহার করতে পারেন।</p>
+                <div class="code-block">
+/* SCSS কোড */
+$main-color: #00e5ff;
+$bg-dark: #333;
+
+body {
+    background: $bg-dark;
+    color: $main-color;
+}
+                </div>
+
+                <h4>২. নেস্টিং (Nesting)</h4>
+                <p>HTML এর মতো CSS কেও একটার ভেতরে আরেকটা লেখা যায়। এতে কোড দেখতে খুব পরিষ্কার লাগে।</p>
+                <div class="code-block">
+/* সাধারণ CSS */
+.navbar { background: black; }
+.navbar ul { margin: 0; }
+.navbar li { display: inline; }
+
+/* SCSS (Nesting) - অনেক স্মার্ট! */
+.navbar {
+    background: black;
+    ul {
+        margin: 0;
+        li {
+            display: inline;
+        }
+    }
+}
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ কম্পাইলার ডেমো</h3>
+                <p>নিচে দেখুন SCSS লিখলে সেটা কিভাবে সাধারণ CSS এ রূপান্তরিত হয়।</p>
+
+                <div class="output-box" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
+                        <strong style="color: #ff57dd;">SCSS ইনপুট:</strong>
+                        <div style="background: #1e1e1e; padding: 10px; font-size: 12px; color: #d4d4d4; border-radius: 5px; height: 120px; font-family: monospace;">
+                            $theme: tomato;<br>
+                            <br>
+                            button {<br>
+                            &nbsp;&nbsp;background: $theme;<br>
+                            &nbsp;&nbsp;&:hover {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;opacity: 0.8;<br>
+                            &nbsp;&nbsp;}<br>
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <strong style="color: #00e5ff;">CSS আউটপুট (ব্রাউজার যা দেখে):</strong>
+                        <div style="background: #1e1e1e; padding: 10px; font-size: 12px; color: #fff; border-radius: 5px; height: 120px; font-family: monospace; border: 1px dashed #555;">
+                            <br>
+                            button {<br>
+                            &nbsp;&nbsp;background: tomato;<br>
+                            }<br>
+                            button:hover {<br>
+                            &nbsp;&nbsp;opacity: 0.8;<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">মিক্সিন (Mixins) - কোড রিইউজ</h3>
+                <p>আপনি ফাংশনের মতো স্টাইল বানিয়ে রাখতে পারেন এবং দরকার মতো কল করতে পারেন।</p>
+                <div class="code-block">
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    @include flexCenter; /* এক লাইনেই ৩ লাইনের কাজ শেষ! */
+    width: 100px;
+}
+                </div>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #18 (অনুশীলন):</strong><br>
+                    "Convert the following CSS to SCSS using Nesting and Variables: <br>
+                    <code>.card { width: 300px; } .card .header { background: red; } .card .body { padding: 20px; }</code>"
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -1314,7 +1413,7 @@ console.log(x + y + z);
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =19 ; i <= 50; i++) {
+for (let i =20 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
