@@ -1243,6 +1243,63 @@ git push origin main
         `
     },
     {
+        id: 17,
+        title: "অধ্যায় ১৭: সার্জারির সরঞ্জাম (Chrome DevTools)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                আপনি অনেক সুন্দর কোড লিখলেন, কিন্তু আউটপুট আসছে না। কোথায় ভুল হলো? এটি খুঁজে বের করার জন্য ব্রাউজারের নিজস্ব একটি ল্যাবরেটরি আছে। একে বলা হয় <strong>Developer Tools</strong> বা সংক্ষেপে DevTools। কিবোর্ডের <code>F12</code> বা <code>Ctrl+Shift+I</code> চাপলেই এটি জিনের মতো বেরিয়ে আসে।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">DevTools এর প্রধান ৪টি অস্ত্র</h3>
+                <ul style="margin-left: 20px; list-style-type: none; margin-top: 10px;">
+                    <li style="margin-bottom: 10px;">🔍 <strong>Elements:</strong> এখান থেকে আপনি HTML/CSS লাইভ এডিট করতে পারেন। কোনো কোড না লিখেই ওয়েবসাইটে রং বা সাইজ পরিবর্তন করে পরীক্ষা করা যায়।</li>
+                    <li style="margin-bottom: 10px;">🐞 <strong>Console:</strong> জাভাস্ক্রিপ্টের কোনো ভুল (Error) থাকলে এখানে লাল কালিতে দেখায়। এছাড়া <code>console.log()</code> এর আউটপুট এখানে দেখা যায়।</li>
+                    <li style="margin-bottom: 10px;">📱 <strong>Device Mode:</strong> আপনার সাইটটি মোবাইল বা ট্যাবে কেমন দেখাবে তা চেক করা যায়।</li>
+                    <li style="margin-bottom: 10px;">🌐 <strong>Network:</strong> ওয়েবসাইট লোড হতে কত সময় নিচ্ছে এবং কোনো ছবি মিসিং আছে কিনা তা দেখা যায়।</li>
+                </ul>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">ডিবাগিং ল্যাব (Console Simulator)</h3>
+                <p>ধরুন নিচের কোডটিতে একটি ভুল আছে। সাধারণ চোখে ধরা কঠিন, কিন্তু কনসোল ট্যাবে এটি ধরা পড়বে। <strong>"কোড রান করুন"</strong> বাটনে চাপ দিন।</p>
+
+                <div class="code-block">
+let x = 10;
+let y = 20;
+// ভুল: 'z' ডিফাইন করা হয়নি
+console.log(x + y + z); 
+                </div>
+
+                <div class="output-box" style="background: #2b2b2b; color: #ccc; font-family: monospace; padding: 10px; border-radius: 5px;">
+                    <div id="consoleDisplay" style="min-height: 40px; margin-bottom: 10px;">
+                        <span style="color: #666;">> কনসোল রেডি...</span>
+                    </div>
+                    <button onclick="runBadCode()" style="padding: 5px 15px; background: #ff5722; color: white; border: none; cursor: pointer; font-size: 12px;">▶ কোড রান করুন</button>
+                    <button onclick="fixCode()" style="padding: 5px 15px; background: #28a745; color: white; border: none; cursor: pointer; font-size: 12px; margin-left: 5px;">🛠️ ফিক্স করুন</button>
+                </div>
+
+                <script>
+                    function runBadCode() {
+                        const display = document.getElementById('consoleDisplay');
+                        display.innerHTML += '<br><span style="color: #ff4d4d;">❌ Uncaught ReferenceError: z is not defined at line 3</span>';
+                    }
+                    function fixCode() {
+                         const display = document.getElementById('consoleDisplay');
+                         display.innerHTML += '<br><span style="color: #00e5ff;">program.js:3</span> <span style="color: #fff;">35</span> (z = 5 ধরে ফিক্স করা হয়েছে)';
+                    }
+                </script>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">টিপস: কিভাবে দ্রুত বাগ ধরবেন?</h3>
+                <p>সবসময় কোডের মাঝে মাঝে <code>console.log('Test')</code> ব্যবহার করবেন। তাহলে বুঝতে পারবেন কোডটি আসলে কতদূর পর্যন্ত কাজ করছে।</p>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #17 (অনুশীলন):</strong><br>
+                    "Explain how to use Chrome DevTools 'Inspect Element' feature to modify CSS temporarily. Also, explain what 'margin', 'border', and 'padding' look like in the 'Computed' tab."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -1257,7 +1314,7 @@ git push origin main
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =18 ; i <= 50; i++) {
+for (let i =19 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
