@@ -757,6 +757,95 @@ fetch('https://api.example.com/data')
         `
     },
     {
+        id: 12,
+        title: "অধ্যায় ১২: কোড যখন স্মার্ট (ES6+ Features)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                আগে জাভাস্ক্রিপ্ট কোড লিখতে অনেক কাঠখড় পোড়াতে হতো। ২০১৫ সালে <strong>ES6</strong> আসার পর কোড লেখার স্টাইল বদলে গেছে। এখন কোড অনেক বেশি পরিষ্কার (Clean) এবং পড়া সহজ (Readable)।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">১. অ্যারো ফাংশন (Arrow Function)</h3>
+                <p>বড় <code>function</code> কিওয়ার্ড না লিখে এখন আমরা তীরের মতো <code>=></code> চিহ্ন ব্যবহার করি।</p>
+                <div class="code-block">
+// পুরাতন পদ্ধতি
+function hello() {
+    return "Hello World!";
+}
+
+// নতুন (ES6) পদ্ধতি - এক লাইনেই শেষ!
+const hello = () => "Hello World!";
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">২. টেমপ্লেট লিটারেল (Template Literals)</h3>
+                <p>আগে স্ট্রিং জোড়া লাগাতে <code>+</code> চিহ্ন ব্যবহার করতে হতো যা খুব বিরক্তিকর ছিল। এখন আমরা ব্যাকটিক ( <code>\`</code> ) এবং <code>\${ }</code> ব্যবহার করি।</p>
+                <div class="code-block">
+let name = "মঞ্জুরুল";
+let age = 25;
+
+// পুরাতন: "আমার নাম " + name + " এবং বয়স " + age
+// নতুন:
+let msg = \`আমার নাম \${name} এবং বয়স \${age}\`; 
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">৩. ডিস্ট্রাকচারিং (Destructuring)</h3>
+                <p>অবজেক্ট বা অ্যারে থেকে ডাটা বের করে আনার জাদুকরী উপায়।</p>
+                <div class="code-block">
+const user = { id: 1, title: 'Developer' };
+
+// আগে: const title = user.title;
+// এখন:
+const { title, id } = user; // সরাসরি ভেরিয়েবল হয়ে গেল!
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ ল্যাব: স্মার্ট বায়ো জেনারেটর</h3>
+                <p>নিচের বক্সে আপনার তথ্য দিন। ES6 এর টেমপ্লেট লিটারেল ব্যবহার করে রিয়েল-টাইমে বায়ো তৈরি হবে।</p>
+
+                <div class="output-box">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <input type="text" id="esName" placeholder="আপনার নাম" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+                        <input type="text" id="esJob" placeholder="পেশা (যেমন: ডেভেলপার)" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+                        <input type="text" id="esHobby" placeholder="শখ (যেমন: কোডিং)" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+                        <input type="text" id="esLoc" placeholder="শহর" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+                    </div>
+
+                    <div id="esOutput" style="margin-top: 15px; padding: 15px; background: rgba(0, 229, 255, 0.1); border-left: 4px solid var(--primary); color: #e2e8f0; min-height: 50px;">
+                        <em>এখানে আপনার স্মার্ট বায়ো দেখা যাবে...</em>
+                    </div>
+                </div>
+
+                <script>
+                    // এই অংশটি ডেমোর জন্য ব্যবহার হচ্ছে
+                    function updateBio() {
+                        const name = document.getElementById('esName').value || '...';
+                        const job = document.getElementById('esJob').value || '...';
+                        const hobby = document.getElementById('esHobby').value || '...';
+                        const loc = document.getElementById('esLoc').value || '...';
+
+                        // ES6 Template Literal Magic
+                        const bio = \`হাই! আমি <strong>\${name}</strong>। 
+                        আমি একজন <strong>\${job}</strong> হিসেবে কাজ করছি। 
+                        আমার শখ হলো <strong>\${hobby}</strong> এবং আমি <strong>\${loc}</strong> এ থাকি।\`;
+
+                        document.getElementById('esOutput').innerHTML = bio;
+                    }
+                    
+                    // ইভেন্ট লিসেনার যোগ করা (সিমুলেটেড)
+                    ['esName', 'esJob', 'esHobby', 'esLoc'].forEach(id => {
+                        document.getElementById(id).addEventListener('input', updateBio);
+                    });
+                </script>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #12 (অনুশীলন):</strong><br>
+                    "Refactor the following JavaScript code to use ES6 Arrow Functions and Template Literals:
+                    <br><code>function greet(name) { return 'Hello ' + name + ', welcome!'; }</code>"
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
@@ -771,7 +860,7 @@ fetch('https://api.example.com/data')
 ];
 
 // বাকি চ্যাপ্টারগুলো জেনারেট করা (ডেমো হিসেবে)
-for (let i =12 ; i <= 50; i++) {
+for (let i =13 ; i <= 50; i++) {
     if (i === 25) continue; // ২৫ অলরেডি আছে
     chaptersDB.push({
         id: i,
