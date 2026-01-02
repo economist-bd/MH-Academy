@@ -409,6 +409,80 @@ alert(name + " এর বয়স " + age); // পপআপ দেখাবে
         `
     },
     {
+        id: 7,
+        title: "অধ্যায় ৭: জাভাস্ক্রিপ্ট ও HTML এর বন্ধুত্ব (DOM)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                আমরা জানি HTML হলো ওয়েবসাইটের শরীর, আর JavaScript হলো মস্তিষ্ক। কিন্তু এই মস্তিষ্ক শরীরের হাত-পা (এলিমেন্ট) নাড়াবে কিভাবে? এদের মধ্যে যোগাযোগ করিয়ে দেয় যে মাধ্যম, তার নাম <strong>DOM (Document Object Model)</strong>।</p>
+
+                
+
+                <p>যখন একটি ওয়েব পেজ লোড হয়, ব্রাউজার পুরো পেজটিকে একটি গাছের মতো (Tree Structure) সাজিয়ে ফেলে। জাভাস্ক্রিপ্ট এই গাছ থেকে যেকোনো ডালপালা (Tag) ধরে পরিবর্তন করতে পারে।</p>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">DOM এর জাদুকরী মেথড</h3>
+                <p>কোনো কিছু পরিবর্তন করার আগে তাকে ধরতে (Select) হয়। এর জন্য জনপ্রিয় কিছু মেথড:</p>
+                <ul style="margin-left: 20px; list-style-type: disc; margin-top: 10px;">
+                    <li><code>document.getElementById('id')</code> - আইডি দিয়ে ধরে।</li>
+                    <li><code>document.querySelector('.class')</code> - ক্লাস বা ট্যাগ দিয়ে ধরে।</li>
+                </ul>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">রিয়েল-টাইম প্রজেক্ট: বাল্ব অন/অফ</h3>
+                <p>নিচের কোডটি দেখুন। আমরা জাভাস্ক্রিপ্ট দিয়ে একটি কাল্পনিক লাইট বাল্ব জ্বালাবো এবং নেভাবো।</p>
+
+                <div class="code-block">
+// HTML এ একটি বাটন এবং একটি বক্স আছে
+
+function toggleLight() {
+    let bulb = document.getElementById('myBulb');
+    let btn = document.getElementById('btnText');
+
+    if (bulb.style.backgroundColor === 'yellow') {
+        // লাইট বন্ধ করো
+        bulb.style.backgroundColor = '#333';
+        bulb.style.boxShadow = 'none';
+        btn.innerText = 'সুইচ অন করুন';
+    } else {
+        // লাইট জ্বালাও
+        bulb.style.backgroundColor = 'yellow';
+        bulb.style.boxShadow = '0 0 50px yellow';
+        btn.innerText = 'সুইচ অফ করুন';
+    }
+}
+                </div>
+
+                <h4>আউটপুট (ক্লিক করে দেখুন):</h4>
+                <div class="output-box" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                    <div id="myBulb" style="width: 80px; height: 80px; background-color: #333; border-radius: 50%; border: 2px solid #555; transition: 0.3s;"></div>
+                    
+                    <button id="btnText" onclick="
+                        let b = document.getElementById('myBulb');
+                        let t = document.getElementById('btnText');
+                        if(b.style.backgroundColor === 'yellow'){
+                            b.style.backgroundColor = '#333';
+                            b.style.boxShadow = 'none';
+                            t.innerText = 'সুইচ অন করুন';
+                            t.style.background = '#2979ff';
+                        } else {
+                            b.style.backgroundColor = 'yellow';
+                            b.style.boxShadow = '0 0 50px yellow';
+                            t.innerText = 'সুইচ অফ করুন';
+                            t.style.background = '#ff5722';
+                        }
+                    " style="padding: 10px 20px; background: #2979ff; color: white; border: none; border-radius: 5px; cursor: pointer;">সুইচ অন করুন</button>
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">কিভাবে কন্টেন্ট বদলাবেন?</h3>
+                <p><code>innerText</code> বা <code>innerHTML</code> ব্যবহার করে আপনি ওয়েবসাইটের যেকোনো লেখা নিমিষেই বদলে ফেলতে পারেন ইউজারকে রিফ্রেশ করতে না দিয়েই।</p>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #7 (অনুশীলন):</strong><br>
+                    "Write a JavaScript code snippet that selects an HTML button with ID 'submit-btn'. When the button is clicked, change its text to 'Loading...' and disable it using DOM manipulation."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
