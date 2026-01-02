@@ -1736,72 +1736,83 @@ chaptersDB.sort((a, b) => a.id - b.id);
 // ... (আপনার আগের ৫০ চ্যাপ্টারের কোড এখানে থাকবে) ...
 
 // কোর্স ইন্টারফেস ওপেন করা
+// --- নতুন ফাংশন: বইয়ের কভার লোড করা ---
+function loadBookCover() {
+    const contentDiv = document.getElementById('chapter-content');
+    
+    // কোনো চ্যাপ্টার সিলেক্টেড থাকবে না
+    document.querySelectorAll('#chapter-list li').forEach(l => l.classList.remove('active'));
+
+    contentDiv.innerHTML = `
+        <div class="book-cover-container animate__animated animate__fadeIn">
+            <h1 class="book-title">MH WEB ACADEMY</h1>
+            <p class="book-slogan">ঘরে বসে নিজের ভবিষ্যৎ তৈরি কর সমগ্র পৃথিবীর সাথে</p>
+            
+            <div class="book-author-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="book-author-img" alt="Author">
+                <h3 style="color: var(--primary); margin-bottom: 5px;">মঞ্জুরুল হক</h3>
+                <p style="color: #ccc; font-size: 14px;">প্রভাষক, অর্থনীতি</p>
+                <hr style="border-color: rgba(255,255,255,0.1); margin: 10px 0;">
+                <div style="font-size: 13px; color: #94a3b8; text-align: left; padding-left: 10px;">
+                    <p><i class="fas fa-phone-alt"></i> ০১৭১৫২৪৭৫৮৮</p>
+                    <p><i class="fab fa-whatsapp"></i> 01715247588</p>
+                    <p><i class="fas fa-envelope"></i> monjurul.jusc@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="start-indicator">
+                <i class="fas fa-arrow-left"></i> বাম পাশের মেনু থেকে চ্যাপ্টার সিলেক্ট করুন
+            </div>
+        </div>
+    `;
+    
+    // মোবাইল ভিউতে মেনু বাটন দেখানো, কিন্তু সাইডবার বন্ধ রাখা
+    if(window.innerWidth <= 768) {
+        document.querySelector('.mobile-course-btn').style.display = 'flex';
+    }
+}
+
+// --- আপডেটেড startLearning ফাংশন ---
 function startLearning() {
     document.getElementById('course-container').style.display = 'flex';
     document.getElementById('hero-section').style.display = 'none';
     document.querySelector('.navbar').style.display = 'none';
-    renderChapterList();
-    loadChapter(1);
     
-    // মোবাইলে শুরু করার সাথে সাথে সাইডবার বন্ধ থাকবে
-    document.getElementById('course-sidebar').classList.remove('active');
-    document.querySelector('.sidebar-overlay').classList.remove('active');
-}
-
-// সাইডবার এবং অ্যাপ বন্ধ করা (ডেস্কটপ + মোবাইল)
-function closeCourse() {
-    // যদি মোবাইল মোডে সাইডবার খোলা থাকে, শুধু সাইডবার বন্ধ করবে
-    if(window.innerWidth <= 768 && document.getElementById('course-sidebar').classList.contains('active')){
-        toggleSidebar();
-        return;
-    }
-    // অন্যথায় পুরো কোর্স বন্ধ করে হোমে যাবে
-    document.getElementById('course-container').style.display = 'none';
-    document.getElementById('hero-section').style.display = 'flex';
-    document.querySelector('.navbar').style.display = 'flex';
-}
-
-// --- NEW: Mobile Sidebar Logic ---
-function toggleSidebar() {
-    const sidebar = document.getElementById('course-sidebar');
-    const overlay = document.querySelector('.sidebar-overlay');
+    renderChapterList(); // লিস্ট তৈরি হবে
     
-    sidebar.classList.toggle('active');
-    overlay.classList.toggle('active');
-}
+    // পরিবর্তন: সরাসরি ১ নম্বর চ্যাপ্টার লোড না করে কভার লোড হবে
+    loadBookCover(); 
 
-// --- NEW: Mobile Navbar Logic ---
-function toggleMobileNav() {
-    const navList = document.getElementById('main-nav');
-    navList.classList.toggle('active');
-}
-
-function closeNav() {
-    document.getElementById('main-nav').classList.remove('active');
-}
-
-// Mobile Dropdown Toggle
-function toggleDropdown(element) {
-    if (window.innerWidth <= 768) {
-        // অন্য খোলা ড্রপডাউন বন্ধ করার জন্য (অপশনাল)
-        // document.querySelectorAll('.dropdown').forEach(d => {
-        //     if(d !== element) d.classList.remove('active');
-        // });
-        
-        element.classList.toggle('active');
+    // মোবাইল লজিক: শুরুতে সাইডবার খুলবে না, ইউজার কভার দেখবে
+    // ইউজার মেনু বাটনে ক্লিক করলে তবেই সাইডবার আসবে
+    if(window.innerWidth <= 768) {
+        document.getElementById('course-sidebar').classList.remove('active');
+        document.querySelector('.sidebar-overlay').classList.remove('active');
     }
 }
 
-// রেন্ডার চ্যাপ্টার লিস্ট (আপডেট - ক্লিক করলে মোবাইলে সাইডবার বন্ধ হবে)
+// --- আপডেটেড renderChapterList (মোবাইলে চ্যাপ্টার সিলেক্ট করলে সাইডবার হাইড হওয়া) ---
 function renderChapterList() {
     const list = document.getElementById('chapter-list');
     list.innerHTML = '';
+    
+    // "বইয়ের কভার" এ ফিরে যাওয়ার জন্য একটি হোম লিংক (অপশনাল)
+    const homeLi = document.createElement('li');
+    homeLi.innerHTML = '<strong><i class="fas fa-book"></i> কভার পেজ</strong>';
+    homeLi.onclick = () => {
+        loadBookCover();
+        if(window.innerWidth <= 768) toggleSidebar(); // মোবাইলে মেনু বন্ধ হবে
+    };
+    homeLi.style.borderBottom = "2px solid var(--primary)";
+    list.appendChild(homeLi);
+
+    // চ্যাপ্টার লুপ
     chaptersDB.forEach(chap => {
         const li = document.createElement('li');
         li.textContent = chap.title;
         li.onclick = () => {
             loadChapter(chap.id);
-            // মোবাইলে চ্যাপ্টার সিলেক্ট করলে সাইডবার অটো বন্ধ হবে
+            // মোবাইলে চ্যাপ্টার সিলেক্ট করলে সাইডবার হাইড হয়ে যাবে
             if(window.innerWidth <= 768) {
                 toggleSidebar();
             }
@@ -1809,40 +1820,4 @@ function renderChapterList() {
         li.id = `chap-${chap.id}`;
         list.appendChild(li);
     });
-}
-
-// loadChapter ফাংশন আগের মতোই থাকবে...
-function loadChapter(id) {
-    // ... আগের কোড ...
-    // (শুধু নিশ্চিত করুন যে author card এবং কন্টেন্ট ঠিকভাবে লোড হচ্ছে)
-    const chapter = chaptersDB.find(c => c.id === id);
-    const contentDiv = document.getElementById('chapter-content');
-    
-    document.querySelectorAll('#chapter-list li').forEach(l => l.classList.remove('active'));
-    document.getElementById(`chap-${id}`).classList.add('active');
-
-    contentDiv.innerHTML = `
-        <h2 class="chapter-title">${chapter.title}</h2>
-        <div class="chapter-body">${chapter.content}</div>
-        <br><br>
-        <div class="author-card">
-            <div class="author-img-wrapper">
-                 <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="author-img">
-            </div>
-            <div class="author-info">
-                <h3>মঞ্জুরুল হক</h3>
-                <p class="designation">প্রভাষক, অর্থনীতি</p>
-                <div class="contact-links">
-                    <a href="tel:01715247588">📞 01715247588</a>
-                    <a href="mailto:monjurul.jusc@gmail.com">📧 Email</a>
-                </div>
-                <div class="ad-banner" style="margin-top:10px; background: rgba(0,229,255,0.1); padding:10px; border-radius:5px;">
-                    <p>এমন অ্যাপ বানাতে চান?</p>
-                    <a href="#" style="color:var(--secondary); font-weight:bold;">অর্ডার করুন</a>
-                </div>
-            </div>
-        </div>
-    `;
-    // স্ক্রল টপে নিয়ে যাওয়া
-    document.querySelector('.content-area').scrollTop = 0;
 }
