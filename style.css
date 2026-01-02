@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #00e5ff;
+    --secondary: #2979ff;
+    --dark-bg: #0f172a;
+    --sidebar-bg: #1e293b;
+    --text: #e2e8f0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Hind+Siliguri', sans-serif; }
+body { background: var(--dark-bg); color: var(--text); overflow-x: hidden; }
+
+/* --- Navbar Styles --- */
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 5%; background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.logo { font-size: 24px; font-weight: 700; color: var(--primary); }
+
+.nav-list { display: flex; list-style: none; gap: 20px; }
+.nav-list a { text-decoration: none; color: white; font-weight: 500; transition: 0.3s; display: block; }
+.nav-list a:hover { color: var(--primary); }
+
+/* Dropdown Desktop */
+.dropdown { position: relative; }
+.dropdown-content {
+    display: none; position: absolute; top: 100%; left: 0;
+    background: #1e293b; min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    border-radius: 5px; overflow: hidden; z-index: 1001;
+}
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-content a { padding: 10px 15px; border-bottom: 1px solid #334155; }
+
+/* Hamburger Menu Icon */
+.menu-toggle { display: none; cursor: pointer; font-size: 24px; color: white; }
+
+/* --- Hero Section --- */
+.hero {
+    height: 100vh; width: 100%; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070') no-repeat center center/cover;
+}
+.hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 229, 255, 0.1) 0%, rgba(15, 23, 42, 0.9) 70%);
+}
+.hero-content {
+    position: relative; z-index: 2; text-align: center; padding: 20px;
+}
+.hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
+.highlight { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+.cta-btn {
+    padding: 12px 30px; font-size: 18px; background: linear-gradient(45deg, var(--secondary), var(--primary));
+    border: none; color: white; border-radius: 50px; cursor: pointer; margin-top: 20px;
+}
+
+/* --- Course Interface (Updated for Mobile) --- */
+#course-container {
+    display: flex; height: 100vh; position: fixed; top: 0; left: 0; width: 100%; z-index: 2000;
+    background: var(--dark-bg);
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 300px; background: var(--sidebar-bg); overflow-y: auto; border-right: 1px solid #334155;
+    display: flex; flex-direction: column; transition: transform 0.3s ease;
+}
+.sidebar-header {
+    padding: 15px; background: #0f172a; position: sticky; top: 0; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--primary);
+}
+#chapter-list li {
+    padding: 15px; border-bottom: 1px solid #334155; cursor: pointer; font-size: 14px;
+}
+#chapter-list li:hover, #chapter-list li.active { background: var(--secondary); color: white; }
+
+/* Content Area */
+.content-area {
+    flex: 1; padding: 30px; overflow-y: auto; background: #0f172a; position: relative;
+}
+/* Mobile Only: Course Menu Button */
+.mobile-course-btn {
+    display: none; /* Desktop e hidden thakbe */
+    margin-bottom: 20px; padding: 8px 15px; background: var(--sidebar-bg);
+    border: 1px solid var(--primary); color: var(--primary); border-radius: 5px;
+    cursor: pointer; align-items: center; gap: 10px;
+}
+
+/* --- General Content Styles --- */
+.code-block { background: #000; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary); overflow-x: auto; color: #0f0; margin: 15px 0; }
+.output-box { background: white; color: black; padding: 20px; border-radius: 8px; margin-top: 10px; }
+.prompt-box { background: #1e293b; padding: 15px; border: 1px dashed var(--primary); margin: 20px 0; border-radius: 8px; }
+
+/* Author Footer */
+.author-card {
+    margin-top: 50px; background: #1e293b; padding: 20px; border-radius: 12px;
+    display: flex; gap: 20px; flex-wrap: wrap; border: 1px solid rgba(255,255,255,0.1);
+}
+.author-img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--primary); }
+
+/* --- MOBILE RESPONSIVE (Key Updates) --- */
+@media (max-width: 768px) {
+    /* 1. Navbar Mobile Logic */
+    .menu-toggle { display: block; }
+    
+    .nav-list {
+        display: none; /* Hidden by default */
+        position: absolute; top: 60px; left: 0; width: 100%;
+        background: var(--sidebar-bg); flex-direction: column;
+        padding: 20px; gap: 0; border-bottom: 1px solid var(--primary);
+    }
+    .nav-list.active { display: flex; } /* Show when active */
+    
+    .nav-list li { width: 100%; }
+    .nav-list a { padding: 10px 0; border-bottom: 1px solid #334155; }
+    
+    /* Mobile Dropdown Logic */
+    .dropdown:hover .dropdown-content { display: none; } /* Disable hover */
+    .dropdown-content { position: static; box-shadow: none; background: #0f172a; padding-left: 20px; }
+    .dropdown.active .dropdown-content { display: block; } /* Show on click */
+
+    /* 2. Hero Adjustments */
+    .hero h1 { font-size: 1.8rem; }
+
+    /* 3. Course Sidebar Mobile Logic (Off-canvas) */
+    .mobile-course-btn { display: flex; } /* Show button */
+    
+    .sidebar {
+        position: fixed; top: 0; left: 0; height: 100%; width: 80%; /* Width reduced */
+        z-index: 2005; transform: translateX(-100%); /* Hidden to left */
+        box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    }
+    .sidebar.active { transform: translateX(0); } /* Slide in */
+    
+    /* Overlay for sidebar */
+    .sidebar-overlay {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.7); z-index: 2004;
+    }
+    .sidebar-overlay.active { display: block; }
+
+    .content-area { padding: 20px 15px; width: 100%; }
+}
