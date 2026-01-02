@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MH Web Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">MH Academy</div>
+        <div class="menu-toggle" onclick="toggleMobileNav()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-list" id="main-nav">
+            <li><a href="#" onclick="closeNav()">হোম</a></li>
+            <li class="dropdown" onclick="toggleDropdown(this)">
+                <a href="javascript:void(0)">কোর্স সমূহ <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#">HTML ক্র্যাশ কোর্স</a>
+                    <a href="#">CSS মাস্টারি</a>
+                    <a href="#">জাভাস্ক্রিপ্ট বেসিক</a>
+                </div>
+            </li>
+            <li class="dropdown" onclick="toggleDropdown(this)">
+                <a href="javascript:void(0)">টিউটোরিয়াল <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#">ভিডিও ১</a>
+                    <a href="#">ভিডিও ২</a>
+                </div>
+            </li>
+             <li class="dropdown" onclick="toggleDropdown(this)">
+                <a href="javascript:void(0)">যোগাযোগ <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#">ইমেইল</a>
+                    <a href="#">ফেসবুক</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>ঘরে বসে নিজের ভবিষ্যৎ তৈরি কর <br> <span class="highlight">সমগ্র পৃথিবীর সাথে</span></h1>
+            <button class="cta-btn" onclick="startLearning()">এখনি শুরু কর <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </header>
+
+    <main id="course-container" style="display: none;">
+        <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+        <aside class="sidebar" id="course-sidebar">
+            <div class="sidebar-header">
+                <h3>কোর্স ইনডেক্স</h3>
+                <button onclick="toggleSidebar()" class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <ul id="chapter-list">
+                </ul>
+        </aside>
+
+        <section class="content-area">
+            <button class="mobile-course-btn" onclick="toggleSidebar()">
+                <i class="fas fa-list"></i> মেনু / ইনডেক্স
+            </button>
+
+            <div id="chapter-content">
+                </div>
+            
+            </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
