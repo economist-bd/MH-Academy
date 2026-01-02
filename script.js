@@ -1399,6 +1399,94 @@ body {
         `
     },
     {
+        id: 19,
+        title: "অধ্যায় ১৯: আধুনিক ডেভেলপমেন্টের ইঞ্জিন (Node.js & NPM)",
+        content: `
+            <div class="chapter-content">
+                <p><strong>ভূমিকা:</strong><br>
+                গাড়ি চালাতে যেমন ইঞ্জিন লাগে, তেমনি আধুনিক জাভাস্ক্রিপ্ট টুলস (যেমন: React, Tailwind) চালাতে **Node.js** লাগে। আর **NPM (Node Package Manager)** হলো একটি বিশাল সুপারমার্কেট, যেখানে লক্ষ লক্ষ ফ্রি কোড প্যাকেজ পাওয়া যায়। অন্যের লেখা কোড ডাউনলোড করে নিজের প্রজেক্টে ব্যবহার করাই এর কাজ।</p>
+
+                
+
+                <h3 style="color: var(--primary); margin-top: 20px;">package.json: প্রজেক্টের আইডি কার্ড</h3>
+                <p>যেকোনো মডার্ন প্রজেক্টে একটি <code>package.json</code> ফাইল থাকে। এটি হলো আপনার প্রজেক্টের শপিং লিস্ট। আপনি কি কি প্যাকেজ ইনস্টল করেছেন, তার তালিকা এখানে থাকে।</p>
+
+                <div class="code-block">
+{
+  "name": "my-awesome-project",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "react": "^18.2.0"
+  }
+}
+                </div>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">টার্মিনাল সিমুলেটর: প্যাকেজ ইনস্টলেশন</h3>
+                <p>নিচে একটি লাইভ টার্মিনাল দেওয়া হলো। আমরা এখানে জনপ্রিয় অ্যানিমেশন লাইব্রেরি <strong>'animate.css'</strong> ইনস্টল করব। কমান্ডটি টাইপ করে এন্টার দিন।</p>
+                <p style="color: #aaa; font-size: 14px;">কমান্ড: <code>npm install animate.css</code></p>
+
+                <div class="output-box" style="background: #1e1e1e; border: 1px solid #333; font-family: 'Courier New', monospace; padding: 15px; border-radius: 6px;">
+                    <div id="npmOutput" style="color: #ccc; margin-bottom: 10px; min-height: 40px;">
+                        C:\\Users\\Dev\\Project> <span class="blink">_</span>
+                    </div>
+                    
+                    <input type="text" id="npmInput" placeholder="এখানে কমান্ড লিখুন..." autocomplete="off"
+                        onkeydown="handleNpmCommand(event)"
+                        style="width: 100%; background: transparent; border: none; color: #00e5ff; outline: none; font-weight: bold;"
+                    >
+                </div>
+
+                <div id="npmDemoBox" style="margin-top: 20px; display: none; text-align: center; border: 1px dashed var(--primary); padding: 20px; border-radius: 10px;">
+                    <h3 class="animate__animated animate__bounce infinite" style="color: #ff5722;">🎉 অভিনন্দন!</h3>
+                    <p>প্যাকেজ ইনস্টল সফল হয়েছে। উপরের লেখাটি এখন লাফাচ্ছে (Bouncing) কারণ আমরা 'animate.css' ব্যবহার করছি।</p>
+                </div>
+
+                <script>
+                    function handleNpmCommand(e) {
+                        if(e.key === 'Enter') {
+                            const val = e.target.value.trim();
+                            const output = document.getElementById('npmOutput');
+                            
+                            output.innerHTML = 'C:\\\\Users\\\\Dev\\\\Project> ' + val;
+
+                            if(val === 'npm install animate.css' || val === 'npm i animate.css') {
+                                output.innerHTML += '<br><span style="color: yellow;">Running...</span><br>';
+                                
+                                // ফেইক লোডিং ইফেক্ট
+                                setTimeout(() => {
+                                    output.innerHTML += '<span style="color: #aaa;">[..................] 10%</span><br>';
+                                }, 500);
+                                setTimeout(() => {
+                                    output.innerHTML += '<span style="color: #aaa;">[##########........] 50%</span><br>';
+                                }, 1000);
+                                setTimeout(() => {
+                                    output.innerHTML += '<span style="color: #0f0;">+ animate.css@4.1.1</span><br><span style="color: #0f0;">added 1 package in 2s</span><br><br>C:\\\\Users\\\\Dev\\\\Project> ';
+                                    document.getElementById('npmDemoBox').style.display = 'block';
+                                }, 2000);
+                            } else {
+                                output.innerHTML += '<br><span style="color: red;">Error: Command not found or try "npm install animate.css"</span><br><br>C:\\\\Users\\\\Dev\\\\Project> ';
+                            }
+                            e.target.value = '';
+                        }
+                    }
+                </script>
+
+                <h3 style="color: var(--primary); margin-top: 20px;">কেন এটি শিখব?</h3>
+                <ul style="margin-left: 20px; list-style-type: disc; margin-top: 10px;">
+                    <li>React, Vue, Angular শিখতে এটি ১০০০% জরুরি।</li>
+                    <li>প্রজেক্ট সেটআপ করতে <code>npm init</code> কমান্ড লাগে।</li>
+                    <li>সার্ভার রান করতে <code>npm start</code> কমান্ড লাগে।</li>
+                </ul>
+
+                <div class="prompt-box">
+                    <strong>🤖 AI Prompt #19 (অনুশীলন):</strong><br>
+                    "Explain the difference between 'dependencies' and 'devDependencies' in a package.json file with real-world examples (like React vs Jest)."
+                </div>
+            </div>
+        `
+    },
+    {
         id: 25,
         title: "অধ্যায় ২৫: প্রফেশনাল ল্যান্ডিং পেজ তৈরি (প্রজেক্ট)",
         content: `
