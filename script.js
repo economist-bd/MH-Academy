@@ -939,86 +939,108 @@ const { title, id } = user; // সরাসরি ভেরিয়েবল হ�
         `
     },
     {
-        id: 14,
-        title: "অধ্যায় ১৪: কম সময়ে বেশি কাজ (Bootstrap Framework)",
-        content: `
-            <div class="chapter-content">
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    id: 14,
+    title: "অধ্যায় ১৪: কম সময়ে বেশি কাজ (Bootstrap Framework)",
+    content: `
+        <div class="chapter-content">
+            <!-- Bootstrap CDN -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-                <p><strong>ভূমিকা:</strong><br>
-                পিজ্জা খাওয়ার জন্য কি আপনি আটা মাখা থেকে শুরু করেন, নাকি ফ্রোজেন পিজ্জা কিনে জাস্ট ওভেনে গরম দেন? <strong>Bootstrap</strong> হলো সেই ফ্রোজেন পিজ্জার মতো। এখানে আগে থেকেই হাজার হাজার স্টাইল (Button, Navbar, Card) তৈরি করা আছে। আপনাকে শুধু সঠিক <code>class</code> নাম ব্যবহার করতে হবে।</p>
+            <!-- কাস্টম CSS (Bootstrap-এর ডিফল্ট কালার ওভাররাইড করা হয়েছে) -->
+            <style>
+                .custom-title {
+                    color: #333; /* নির্দিষ্ট কালার */
+                    margin-top: 20px;
+                }
+                .custom-btn {
+                    background-color: #4CAF50; /* সবুজ */
+                    color: white;
+                    border: none;
+                    padding: 6px 12px;
+                    border-radius: 5px;
+                    transition: 0.3s;
+                }
+                .custom-btn:hover {
+                    background-color: #45a049;
+                }
+                .delete-btn {
+                    background-color: #e74c3c; /* লাল */
+                    color: white;
+                    border: none;
+                    padding: 6px 12px;
+                    border-radius: 5px;
+                    transition: 0.3s;
+                }
+                .delete-btn:hover {
+                    background-color: #c0392b;
+                }
+                .custom-card {
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                }
+                .custom-card .card-title {
+                    color: #333;
+                }
+                .custom-card .card-text {
+                    color: #555;
+                }
+                .custom-link {
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 6px 12px;
+                    border-radius: 5px;
+                    text-decoration: none;
+                }
+                .custom-link:hover {
+                    background-color: #45a049;
+                }
+            </style>
 
-                
+            <p><strong>ভূমিকা:</strong><br>
+            পিজ্জা খাওয়ার জন্য কি আপনি আটা মাখা থেকে শুরু করেন, নাকি ফ্রোজেন পিজ্জা কিনে জাস্ট ওভেনে গরম দেন? <strong>Bootstrap</strong> হলো সেই ফ্রোজেন পিজ্জার মতো। এখানে আগে থেকেই হাজার হাজার স্টাইল (Button, Navbar, Card) তৈরি করা আছে। আপনাকে শুধু সঠিক <code>class</code> নাম ব্যবহার করতে হবে।</p>
 
-                <h3 style="color: var(--primary); margin-top: 20px;">কেন বুটস্ট্র্যাপ ব্যবহার করবেন?</h3>
-                <ul style="margin-left: 20px; list-style-type: disc; margin-top: 10px;">
-                    <li><strong>দ্রুত ডিজাইন:</strong> কালার বা সাইজ নিয়ে ভাবতে হয় না।</li>
-                    <li><strong>রেস্পন্সিভ:</strong> মোবাইল বা কম্পিউটারে অটোমেটিক ফিট হয়ে যায়।</li>
-                    <li><strong>জনপ্রিয়তা:</strong> বিশ্বের ৩০% ওয়েবসাইট এটি দিয়ে তৈরি।</li>
-                </ul>
+            <h3 class="custom-title">কেন বুটস্ট্র্যাপ ব্যবহার করবেন?</h3>
+            <ul style="margin-left: 20px; list-style-type: disc; margin-top: 10px;">
+                <li><strong>দ্রুত ডিজাইন:</strong> কালার বা সাইজ নিয়ে ভাবতে হয় না।</li>
+                <li><strong>রেস্পন্সিভ:</strong> মোবাইল বা কম্পিউটারে অটোমেটিক ফিট হয়ে যায়।</li>
+                <li><strong>জনপ্রিয়তা:</strong> বিশ্বের ৩০% ওয়েবসাইট এটি দিয়ে তৈরি।</li>
+            </ul>
 
-                <h3 style="color: var(--primary); margin-top: 20px;">ক্লাস (Class) এর খেলা</h3>
-                <p>বুটস্ট্র্যাপে কোড লিখতে হয় না, শুধু ক্লাসের নাম মনে রাখতে হয়। যেমন:</p>
-                <style>
-/* সাধারণ বাটন স্টাইল */
-.btn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+            <h3 class="custom-title">ক্লাস (Class) এর খেলা</h3>
+            <p>বুটস্ট্র্যাপে কোড লিখতে হয় না, শুধু ক্লাসের নাম মনে রাখতে হয়। যেমন:</p>
+            <div class="code-block">
+&lt;button&gt;ক্লিক&lt;/button&gt;
 
-/* ক্লিক বাটন */
-.btn-click {
-  background-color: #4CAF50; /* সবুজ */
-  color: white;
-}
-.btn-click:hover {
-  background-color: #45a049;
-}
+&lt;button class="custom-btn"&gt;ক্লিক&lt;/button&gt;
+&lt;button class="delete-btn"&gt;ডিলিট&lt;/button&gt;
+            </div>
 
-/* ডিলিট বাটন */
-.btn-delete {
-  background-color: #e74c3c; /* লাল */
-  color: white;
-}
-.btn-delete:hover {
-  background-color: #c0392b;
-}
-</style>
+            <h3 class="custom-title">লাইভ ডেমো: বুটস্ট্র্যাপ কার্ড</h3>
+            <p>নিচে দেখুন কত বড় কোড আমরা মাত্র কয়েক লাইনে লিখেছি এবং দেখতে কত প্রফেশনাল লাগছে।</p>
 
-<!-- বাটন -->
-<button class="btn btn-click">ক্লিক</button>
-<button class="btn btn-delete">ডিলিট</button>
-
-
-                <h3 style="color: var(--primary); margin-top: 20px;">লাইভ ডেমো: বুটস্ট্র্যাপ কার্ড</h3>
-                <p>নিচে দেখুন কত বড় কোড আমরা মাত্র কয়েক লাইনে লিখেছি এবং দেখতে কত প্রফেশনাল লাগছে।</p>
-
-                <div class="output-box" style="background: white; color: black; padding: 20px; border-radius: 10px;">
-                    <div class="card" style="width: 18rem; margin: 0 auto;">
-                        <img src="https://via.placeholder.com/300x150" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">প্রফেশনাল কার্ড</h5>
-                            <p class="card-text">আমি কোনো CSS কোড লিখিনি। শুধু বুটস্ট্র্যাপের ক্লাস ব্যবহার করেছি।</p>
-                            <a href="#" class="btn btn-primary">বিস্তারিত দেখুন</a>
-                        </div>
+            <div class="output-box" style="background: white; color: black; padding: 20px; border-radius: 10px;">
+                <div class="card custom-card" style="width: 18rem; margin: 0 auto;">
+                    <img src="https://via.placeholder.com/300x150" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">প্রফেশনাল কার্ড</h5>
+                        <p class="card-text">আমি কোনো CSS কোড লিখিনি। শুধু বুটস্ট্র্যাপের গ্রিড ও স্ট্রাকচার ব্যবহার করেছি।</p>
+                        <a href="#" class="custom-link">বিস্তারিত দেখুন</a>
                     </div>
                 </div>
-                <p style="font-size: 12px; color: #999; margin-top: 5px;">(নোট: এই ডিজাইনটি কাজ করার জন্য ইন্টারনেটের প্রয়োজন, কারণ এটি CDN থেকে স্টাইল লোড করছে।)</p>
-
-                <h3 style="color: var(--primary); margin-top: 20px;">গ্রিড সিস্টেম (Grid System)</h3>
-                <p>বুটস্ট্র্যাপ পেজকে ১২টি কলামে ভাগ করে। আপনি বলতে পারেন <code>col-6</code> (অর্ধেক জায়গা) বা <code>col-4</code> (তিন ভাগের এক ভাগ)।</p>
-
-                <div class="prompt-box">
-                    <strong>🤖 AI Prompt #14 (অনুশীলন):</strong><br>
-                    "Write HTML code using Bootstrap 5 classes to create a responsive 'Pricing Table'. It should have 3 cards side-by-side (Basic, Standard, Premium) using the grid system."
-                </div>
             </div>
-        `
-    },
+            <p style="font-size: 12px; color: #999; margin-top: 5px;">(নোট: এই ডিজাইনটি কাজ করার জন্য ইন্টারনেটের প্রয়োজন, কারণ এটি CDN থেকে স্টাইল লোড করছে।)</p>
+
+            <h3 class="custom-title">গ্রিড সিস্টেম (Grid System)</h3>
+            <p>বুটস্ট্র্যাপ পেজকে ১২টি কলামে ভাগ করে। আপনি বলতে পারেন <code>col-6</code> (অর্ধেক জায়গা) বা <code>col-4</code> (তিন ভাগের এক ভাগ)।</p>
+
+            <div class="prompt-box">
+                <strong>🤖 AI Prompt #14 (অনুশীলন):</strong><br>
+                "Write HTML code using Bootstrap 5 classes to create a responsive 'Pricing Table'. It should have 3 cards side-by-side (Basic, Standard, Premium) using the grid system."
+            </div>
+        </div>
+    `
+},
+
     
     {
         id: 15,
