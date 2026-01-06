@@ -2085,9 +2085,9 @@ function loadBookCover() {
             <p class="book-slogan">ঘরে বসে নিজের ভবিষ্যৎ তৈরি কর সমগ্র পৃথিবীর সাথে</p>
             
             <div class="book-author-box">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="book-author-img" alt="Author">
+                <img src="https://i.ibb.co.com/LDMM7qTn/d.png" class="book-author-img" alt="Author">
                 <h3 style="color: var(--primary); margin-bottom: 5px;">মঞ্জুরুল হক</h3>
-                <p style="color: #ccc; font-size: 14px;">প্রভাষক, অর্থনীতি</p>
+                <p style="color: #ccc; font-size: 14px;">প্রভাষক, অর্থনীতি ও মেন্টর MH WEB ACADEMY</p>
                 <hr style="border-color: rgba(255,255,255,0.1); margin: 10px 0;">
                 <div style="font-size: 13px; color: #94a3b8; text-align: left; padding-left: 10px;">
                     <p><i class="fas fa-phone-alt"></i> ০১৭১৫২৪৭৫৮৮</p>
@@ -2097,7 +2097,7 @@ function loadBookCover() {
             </div>
 
             <div class="start-indicator">
-                <i class="fas fa-arrow-left"></i> বাম পাশের মেনু থেকে চ্যাপ্টার সিলেক্ট করুন
+                <i class="fas fa-arrow-left"></i> উপরে বাম পাশের মেনু থেকে চ্যাপ্টার সিলেক্ট করুন
             </div>
         </div>
     `;
