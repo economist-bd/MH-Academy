@@ -2087,7 +2087,8 @@ function loadBookCover() {
             <div class="book-author-box">
                 <img src="https://i.ibb.co.com/LDMM7qTn/d.png" class="book-author-img" alt="Author">
                 <h3 style="color: var(--primary); margin-bottom: 5px;">মঞ্জুরুল হক</h3>
-                <p style="color: #ccc; font-size: 14px;">প্রভাষক, অর্থনীতি ও মেন্টর MH WEB ACADEMY</p>
+                <p style="color: #ccc; font-size: 14px;">প্রভাষক, অর্থনীতি ও</p>
+                <p style="color: #ccc; font-size: 14px;">মেন্টর, MH WEB ACADEMY</p>
                 <hr style="border-color: rgba(255,255,255,0.1); margin: 10px 0;">
                 <div style="font-size: 13px; color: #94a3b8; text-align: left; padding-left: 10px;">
                     <p><i class="fas fa-phone-alt"></i> ০১৭১৫২৪৭৫৮৮</p>
@@ -2181,7 +2182,7 @@ function loadChapter(id) {
             </div>
             <div class="author-info">
                 <h3>মঞ্জুরুল হক</h3>
-                <p class="designation">প্রভাষক, অর্থনীতি</p>
+                <p class="designation">প্রভাষক, অর্থনীতি ও মেন্টর MH WEB ACADEMY</p>
                 <div class="contact-links">
                     <a href="tel:01715247588">📞 01715247588</a>
                     <a href="mailto:monjurul.jusc@gmail.com">📧 Email</a>
