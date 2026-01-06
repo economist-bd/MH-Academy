@@ -959,29 +959,40 @@ const { title, id } = user; // সরাসরি ভেরিয়েবল হ�
 
                 <h3 style="color: var(--primary); margin-top: 20px;">ক্লাস (Class) এর খেলা</h3>
                 <p>বুটস্ট্র্যাপে কোড লিখতে হয় না, শুধু ক্লাসের নাম মনে রাখতে হয়। যেমন:</p>
-                <div class="code-block">
-<style>
-.my-btn {
-  background-color: blue;
-  color: white;
-  padding: 5px 10px;
+                <style>
+/* সাধারণ বাটন স্টাইল */
+.btn {
+  padding: 8px 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
 }
-.delete-btn {
-  background-color: crimson;
+
+/* ক্লিক বাটন */
+.btn-click {
+  background-color: #4CAF50; /* সবুজ */
   color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
+}
+.btn-click:hover {
+  background-color: #45a049;
+}
+
+/* ডিলিট বাটন */
+.btn-delete {
+  background-color: #e74c3c; /* লাল */
+  color: white;
+}
+.btn-delete:hover {
+  background-color: #c0392b;
 }
 </style>
 
-<button class="my-btn">ক্লিক</button>
-<button class="delete-btn">ডিলিট</button>
+<!-- বাটন -->
+<button class="btn btn-click">ক্লিক</button>
+<button class="btn btn-delete">ডিলিট</button>
 
-
-                </div>
 
                 <h3 style="color: var(--primary); margin-top: 20px;">লাইভ ডেমো: বুটস্ট্র্যাপ কার্ড</h3>
                 <p>নিচে দেখুন কত বড় কোড আমরা মাত্র কয়েক লাইনে লিখেছি এবং দেখতে কত প্রফেশনাল লাগছে।</p>
