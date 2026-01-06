@@ -2177,7 +2177,7 @@ function loadChapter(id) {
         <br><br>
         <div class="author-card">
             <div class="author-img-wrapper">
-                 <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="author-img">
+                 <img src="https://i.ibb.co.com/LDMM7qTn/d.png" class="author-img">
             </div>
             <div class="author-info">
                 <h3>মঞ্জুরুল হক</h3>
