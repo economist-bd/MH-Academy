@@ -961,38 +961,25 @@ const { title, id } = user; // সরাসরি ভেরিয়েবল হ�
                 <p>বুটস্ট্র্যাপে কোড লিখতে হয় না, শুধু ক্লাসের নাম মনে রাখতে হয়। যেমন:</p>
                 <div class="code-block">
 <style>
-/* সাধারণ বাটন স্টাইল */
-.btn {
-  padding: 8px 16px;
+.my-btn {
+  background-color: blue;
+  color: white;
+  padding: 5px 10px;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
+  border-radius: 4px;
 }
-
-/* ক্লিক বাটন */
-.btn-click {
-  background-color: #4CAF50; /* সবুজ */
+.delete-btn {
+  background-color: crimson;
   color: white;
-}
-.btn-click:hover {
-  background-color: #45a049;
-}
-
-/* ডিলিট বাটন */
-.btn-delete {
-  background-color: #e74c3c; /* লাল */
-  color: white;
-}
-.btn-delete:hover {
-  background-color: #c0392b;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
 }
 </style>
 
-<!-- বাটন -->
-<button class="btn btn-click">ক্লিক</button>
-<button class="btn btn-delete">ডিলিট</button>
+<button class="my-btn">ক্লিক</button>
+<button class="delete-btn">ডিলিট</button>
+
 
                 </div>
 
