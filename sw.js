@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mh-academy-v1';
+const CACHE_NAME = 'mh-academy-v2';
 const assets = [
   '/',
   '/index.html',
